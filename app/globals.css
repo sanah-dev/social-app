@@ -20,25 +20,3 @@
     -webkit-text-fill-color: #c8d6e5;
   }
 }
-
-@layer components {
-  .form-icon {
-    @apply absolute left-3;
-  }
-
-  .form-label {
-    @apply relative flex items-center gap-4;
-  }
-
-  .form-input {
-    @apply grow bg-[#2d3f53] h-14 pl-10 focus:ring-2 focus:ring-[#7695b8];
-  }
-
-  .error-message {
-    @apply text-red-500 font-medium text-left;
-  }
-
-  .form-button {
-    @apply w-full h-14 p-2 bg-cyan-600 disabled:bg-neutral-400 disabled:text-neutral-300 disabled:cursor-not-allowed;
-  }
-}

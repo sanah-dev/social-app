@@ -1,23 +1,11 @@
-import { FormState } from '@/app/actions';
 import { CheckCircleIcon } from './icon';
 
-export const FormErrorMessage = ({ errors }: FormState) => {
-  return (
-    <>
-      {errors &&
-        errors.map((error, index) => (
-          <p key={index} className='error-message'>
-            {error}
-          </p>
-        ))}
-    </>
-  );
-};
+export const FormMessage = ({ message }: { message?: string }) => {
+  const hasMessage = message && message.length > 0;
 
-export const FormSuccessMessage = ({ message }: FormState) => {
   return (
     <>
-      {message && (
+      {hasMessage && (
         <p className='flex items-center w-full p-5 bg-green-600'>
           <CheckCircleIcon />
           <span className='pl-2'>{message}</span>

@@ -1,66 +1,49 @@
 'use client';
 
-import FormButton from '@/components/form-btn';
+import FormButton from '@/components/form-button';
 import FormInput from '@/components/form-input';
 import { EnvelopeIcon, KeyIcon, UserIcon } from '@/components/icon';
 import { useFormState } from 'react-dom';
 import { FormState, handleForm } from './actions';
-import {
-  FormErrorMessage,
-  FormSuccessMessage,
-} from '@/components/form-message';
-
-const initialState: FormState = {
-  errors: [],
-  message: '',
-};
+import { FormMessage } from '@/components/form-message';
 
 export default function Home() {
-  const [state, action] = useFormState<FormState, FormData>(
-    handleForm,
-    initialState
-  );
+  const [state, action] = useFormState<FormState, FormData>(handleForm, {});
 
   return (
     <main className='w-screen h-screen text-center'>
       <section className='flex flex-col justify-center items-center h-full w-2/6 max-lg:w-3/6 max-sm:w-4/6 m-auto gap-4'>
-        <h1 className='flex text-4xl text-cyan-400'>
-          <span>🪸 🐳 🦑 🐠 🐙 🦈 🐡</span>
-        </h1>
+        <h1 className='flex text-4xl text-cyan-400'>🪸 🐳 🦑 🐠 🐙 🦈 🐡</h1>
 
-        <form action={action} className='flex flex-col gap-4 w-full'>
+        <form action={action} className='flex flex-col w-full'>
           <FormInput
             name='email'
             type='text'
             placeholder='Email'
-            // required={true}
-            errors={[]}
-            icon={<EnvelopeIcon className='form-icon' />}
+            errors={state?.errors?.email}
+            icon={<EnvelopeIcon className='absolute left-3' />}
           />
 
           <FormInput
             name='userName'
             type='text'
             placeholder='Username'
-            // required={true}
-            errors={[]}
-            icon={<UserIcon className='form-icon' />}
+            errors={state?.errors?.userName}
+            icon={<UserIcon className='absolute left-3' />}
           />
 
           <FormInput
             name='password'
             type='password'
             placeholder='Password'
-            // required={true}
-            errors={state?.errors ?? []}
-            icon={<KeyIcon className='form-icon' />}
+            errors={state?.errors?.password}
+            icon={<KeyIcon className='absolute left-3' />}
           />
-
-          <FormErrorMessage errors={state.errors} />
 
           <FormButton text='Log in'></FormButton>
         </form>
-        <FormSuccessMessage message={state.message} />
+
+        <FormMessage message={state.message?.[0]} />
       </section>
     </main>
   );
