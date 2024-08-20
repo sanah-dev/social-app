@@ -53,20 +53,13 @@ export default function TweetList({
 
   return (
     <>
-      <article>
+      <ul className='flex flex-col gap-4'>
         {tweets.map((tweet) => (
-          <TweetItem key={tweet.id} {...tweet} />
+          <li className='bg-light  border-2 rounded-xl shadow-card overflow-hidden hover:border-rose'>
+            <TweetItem key={tweet.id} {...tweet} />
+          </li>
         ))}
-
-        {/* {tweets.length > 0 && (
-          <TweetItem
-            tweet={tweets[0].tweet}
-            id={tweets[0].id}
-            user={tweets[0].user}
-            created_at={tweets[0].created_at}
-          />
-        )} */}
-      </article>
+      </ul>
 
       <div className='flex items-center justify-between my-6 text-[#ecf0f1c5]'>
         <button

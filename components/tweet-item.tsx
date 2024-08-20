@@ -2,7 +2,7 @@ import { formatToTimeAgo } from '@/lib/utils';
 import Link from 'next/link';
 import { HeartIcon } from '@heroicons/react/24/outline';
 
-interface TweetProps {
+export interface TweetProps {
   tweet: string;
   id: number;
   user: { username: string };
@@ -18,10 +18,7 @@ export default function TweetItem({ tweet, id, user, created_at }: TweetProps) {
   const truncatedTweet = truncateText(tweet, 118);
 
   return (
-    <Link
-      href={`/tweets/${id}`}
-      className='flex flex-col p-4 bg-light rounded-xl *:text-dark bg-card shadow-card'
-    >
+    <Link href={`/tweets/${id}`} className='flex flex-col p-3 *:text-dark'>
       <div className='flex justify-between'>
         <span>@{user.username}</span>
         <small>{formatToTimeAgo(created_at.toString())}</small>
