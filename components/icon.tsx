@@ -181,3 +181,60 @@ export const ChevronLeftIcon = ({
     </svg>
   );
 };
+
+export const ChevronRightIcon = ({
+  width = 20,
+  height = 20,
+  className,
+}: IIcon) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 20 20'
+      fill='currentColor'
+      width={width}
+      height={height}
+      className={className}
+    >
+      <path
+        clipRule='evenodd'
+        fillRule='evenodd'
+        d='M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z'
+      />
+    </svg>
+  );
+};
+
+export const HomeIcon = ({ width = 18, height = 18, className }: IIcon) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 20 20'
+      fill='currentColor'
+      width={width}
+      height={height}
+      className={className}
+    >
+      <path
+        clipRule='evenodd'
+        fillRule='evenodd'
+        d='M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z'
+      />
+    </svg>
+  );
+};
+
+export const HeartIcon = ({ width = 18, height = 18, className }: IIcon) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 20 20'
+      fill='currentColor'
+      width={width}
+      height={height}
+      className={className}
+    >
+      <path d='m9.653 16.915-.005-.003-.019-.01a20.759 20.759 0 0 1-1.162-.682 22.045 22.045 0 0 1-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 0 1 8-2.828A4.5 4.5 0 0 1 18 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 0 1-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 0 1-.69.001l-.002-.001Z' />
+    </svg>
+  );
+};

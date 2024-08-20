@@ -1,6 +1,5 @@
 'use server';
 
-import { PASSWORD_REGEX } from '@/lib/constants';
 import db from '@/lib/db';
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
@@ -23,18 +22,10 @@ const checkEmailExists = async (email: string) => {
 const formSchema = z.object({
   email: z
     .string()
-    .email('이메일을 입력해주세요.')
+    .email('이메일 형식으로 입력하세요.')
     .toLowerCase()
     .refine(checkEmailExists, '이메일을 확인해주세요.'),
-  password: z
-    .string({
-      required_error: '비밀번호를 입력해 주세요.',
-    })
-    .min(4, '최소 4글자 이상 입력해주세요.')
-    .regex(
-      PASSWORD_REGEX,
-      '비밀번호에는 대문자, 소문자, 숫자, 특수 문자 #?!@$%^&*-가 하나 이상 포함되어야 합니다.'
-    ),
+  password: z.string().min(5, '5글자 이상 입력하세요.'),
 });
 
 export async function logIn(prevState: any, formData: FormData) {
