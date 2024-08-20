@@ -3,27 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* --color-black: #151d23; */
-    --color-black: #181d2e;
-    --color-gray: #1d2237;
-    --color-skeleton: #21263a;
-    --color-white: #ecf0f1;
-    --color-yellow: #f1c40f;
-    --color-purple: #9b59b6;
-    --color-rose: #fc427b;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
   body {
-    color: var(--color-white);
-    background: #0f121c;
+    color: #c8d6e5;
+    background: #222f3e;
     font-size: 14px;
   }
-  textarea,
+
   input {
     outline: none;
   }
@@ -31,74 +16,29 @@
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px var(--color-black) inset !important;
-    -webkit-text-fill-color: var(--color-white);
-  }
-
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  input[type='number'] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-  }
-
-  textarea {
-    resize: none;
-  }
-
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-
-  main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-  }
-
-  section {
-    /* margin: auto; */
-    width: 393px;
-    height: 852px;
-    overflow-y: auto;
-  }
-
-  h1 {
-    font-weight: 700;
+    -webkit-box-shadow: 0 0 0px 1000px #2d3f53 inset !important;
+    -webkit-text-fill-color: #c8d6e5;
   }
 }
 
 @layer components {
-  .img-bg {
-    @apply bg-screen bg-cover bg-center shadow-lg;
+  .form-icon {
+    @apply absolute left-3;
   }
-  .img-logo {
-    @apply bg-logo bg-contain bg-no-repeat bg-center drop-shadow-neon;
+
+  .form-label {
+    @apply relative flex items-center gap-4;
   }
-  .content {
-    @apply relative flex flex-col gap-8 h-full py-8 px-6;
+
+  .form-input {
+    @apply grow bg-[#2d3f53] h-14 pl-10 focus:ring-2 focus:ring-[#7695b8];
   }
-  .title-box {
-    @apply flex flex-col gap-2;
+
+  .error-message {
+    @apply text-red-500 font-medium text-left;
   }
-  .hr {
-    border-top: 1px solid gray;
-  }
-  .hr > span {
-    @apply inline-block p-3 -mt-5 bg-dark;
-  }
-  .link-btn {
-    @apply flex gap-3 items-center justify-center w-[calc(50%-4px)] h-12 p-2 bg-[#242b43] transition-all ease-in-out duration-[0.4s] hover:bg-purple;
-  }
-  .footer-btn {
-    @apply absolute bottom-6 left-6 block w-[calc(100%-3rem)] h-12 text-center py-3 bg-rose text-light;
+
+  .form-button {
+    @apply w-full h-14 p-2 bg-cyan-600 disabled:bg-neutral-400 disabled:text-neutral-300 disabled:cursor-not-allowed;
   }
 }
