@@ -8,3 +8,8 @@ export function formatToTimeAgo(date: string): string {
 
   return formatter.format(diff, 'days');
 }
+
+export const formatToMaxLength = (text: string, maxLength: number): string => {
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength) + '...';
+};

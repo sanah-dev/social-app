@@ -55,9 +55,7 @@ export default function TweetList({
     <>
       <ul className='flex flex-col gap-4'>
         {tweets.map((tweet) => (
-          <li className='bg-light  border-2 rounded-xl shadow-card overflow-hidden hover:border-rose'>
-            <TweetItem key={tweet.id} {...tweet} />
-          </li>
+          <TweetItem key={tweet.id} {...tweet} />
         ))}
       </ul>
 

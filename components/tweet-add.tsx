@@ -29,11 +29,11 @@ export default function TweetAdd() {
           ></textarea>
 
           <span className='absolute top-[70px] right-3 text-neutral-400'>
-            {textLength <= 50 ? (
-              `${textLength}/50`
+            {textLength <= 500 ? (
+              `${textLength}/500`
             ) : (
               <>
-                <span className='text-red-500'>{textLength}</span>/50
+                <span className='text-red-500'>{textLength}</span>/500
               </>
             )}
           </span>

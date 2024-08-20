@@ -10,6 +10,7 @@ export async function getInitialTweets() {
     select: {
       id: true,
       tweet: true,
+      views: true,
       created_at: true,
       user: {
         select: {
@@ -17,7 +18,7 @@ export async function getInitialTweets() {
         },
       },
     },
-    take: 4,
+    take: 3,
     orderBy: {
       created_at: 'desc',
     },
@@ -31,6 +32,7 @@ export async function getTweets(page: number) {
     select: {
       id: true,
       tweet: true,
+      views: true,
       created_at: true,
       updated_at: true,
       user: {
@@ -39,8 +41,8 @@ export async function getTweets(page: number) {
         },
       },
     },
-    take: 4,
-    skip: page * 4,
+    take: 3,
+    skip: page * 3,
     orderBy: {
       created_at: 'desc',
     },
@@ -57,6 +59,7 @@ export async function getTweetDetails(id: number) {
     select: {
       id: true,
       tweet: true,
+      views: true,
       created_at: true,
       updated_at: true,
       user: {
@@ -80,7 +83,7 @@ const tweetSchema = z.object({
   tweet_add: z
     .string()
     .min(1, '글자를 입력해주세요.')
-    .max(50, '최대 50글자까지 작성 가능합니다.'),
+    .max(500, '최대 500글자까지 작성 가능합니다.'),
 });
 export async function createTweet(prevState: any, formData: FormData) {
   const tweet_add = formData.get('tweet_add');

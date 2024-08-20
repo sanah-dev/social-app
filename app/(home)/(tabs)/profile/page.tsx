@@ -1,35 +1,10 @@
+import { getUser, logOut } from '@/app/(auth)/action';
 import Button from '@/components/button';
 import ButtonPrev from '@/components/button-prev';
-import db from '@/lib/db';
-import getSession from '@/lib/session';
-import { notFound, redirect } from 'next/navigation';
-
-async function getUser() {
-  const session = await getSession();
-
-  if (session.id) {
-    const user = await db.user.findUnique({
-      where: {
-        id: session.id,
-      },
-    });
-    if (user) {
-      return user;
-    }
-  }
-  notFound();
-}
 
 export default async function Profile() {
   const user = await getUser();
-  const logOut = async () => {
-    'use server';
 
-    const session = await getSession();
-    await session.destroy();
-
-    redirect('/');
-  };
   return (
     <>
       <div className='title-box'>

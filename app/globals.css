@@ -7,6 +7,7 @@
     /* --color-black: #151d23; */
     --color-black: #181d2e;
     --color-gray: #1d2237;
+    --color-skeleton: #21263a;
     --color-white: #ecf0f1;
     --color-yellow: #f1c40f;
     --color-purple: #9b59b6;
@@ -22,7 +23,7 @@
     background: #0f121c;
     font-size: 14px;
   }
-
+  textarea,
   input {
     outline: none;
   }
@@ -45,6 +46,10 @@
     appearance: textfield;
   }
 
+  textarea {
+    resize: none;
+  }
+
   header {
     position: fixed;
     top: 0;
@@ -60,7 +65,7 @@
   }
 
   section {
-    margin: auto;
+    /* margin: auto; */
     width: 393px;
     height: 852px;
     overflow-y: auto;
@@ -79,7 +84,7 @@
     @apply bg-logo bg-contain bg-no-repeat bg-center drop-shadow-neon;
   }
   .content {
-    @apply flex flex-col gap-8 h-full py-8 px-6;
+    @apply relative flex flex-col gap-8 h-full py-8 px-6;
   }
   .title-box {
     @apply flex flex-col gap-2;

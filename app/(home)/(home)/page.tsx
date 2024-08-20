@@ -1,6 +1,5 @@
 import TweetAdd from '@/components/tweet-add';
 import TweetList from '@/components/tweet-list';
-import db from '@/lib/db';
 import { Prisma } from '@prisma/client';
 import { getInitialTweets } from './actions';
 

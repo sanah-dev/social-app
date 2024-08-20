@@ -1,6 +1,5 @@
-import { formatToTimeAgo } from '@/lib/utils';
+import { formatToMaxLength, formatToTimeAgo } from '@/lib/utils';
 import Link from 'next/link';
-import { HeartIcon } from '@heroicons/react/24/outline';
 
 export interface TweetProps {
   tweet: string;
@@ -9,27 +8,24 @@ export interface TweetProps {
   created_at: Date;
 }
 
-const truncateText = (text: string, maxLength: number): string => {
-  if (text.length <= maxLength) return text;
-  return text.slice(0, maxLength) + '...';
-};
-
 export default function TweetItem({ tweet, id, user, created_at }: TweetProps) {
-  const truncatedTweet = truncateText(tweet, 118);
-
   return (
-    <Link href={`/tweets/${id}`} className='flex flex-col p-3 *:text-dark'>
-      <div className='flex justify-between'>
-        <span>@{user.username}</span>
-        <small>{formatToTimeAgo(created_at.toString())}</small>
-      </div>
+    <li className='p-2 bg-light border-2 rounded-xl overflow-hidden hover:border-rose'>
+      <Link href={`/tweets/${id}`} className='flex flex-col *:text-dark'>
+        <div className='flex justify-between p-1 border-b border-stone-300'>
+          <div className='flex items-center gap-2'>
+            <span>🙂</span>
+            <span>{user.username}</span>
+          </div>
+          <small>{formatToTimeAgo(created_at.toString())}</small>
+        </div>
 
-      <p className='line-clamp-3'>{truncatedTweet}</p>
+        <p className='p-3 px-1'>{formatToMaxLength(tweet, 100)}</p>
 
-      <div className='flex items-center gap-2'>
-        <HeartIcon className='ml-1 size-4' />
-        <span>0 likes</span>
-      </div>
-    </Link>
+        <div className='flex items-center gap-2 p-1 border-t border-stone-300'>
+          <span>💬 0</span> <span>❤️ 0</span>
+        </div>
+      </Link>
+    </li>
   );
 }
