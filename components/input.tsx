@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { InputHTMLAttributes, ReactNode } from 'react';
 
 interface IFormInputProps {
   type: string;
@@ -9,14 +9,15 @@ interface IFormInputProps {
   icon?: ReactNode;
 }
 
-export default function FormInput({
+export default function Input({
+  name,
   type,
   placeholder,
   required,
-  errors,
-  name,
   icon,
-}: IFormInputProps) {
+  errors = [],
+  ...rest
+}: IFormInputProps & InputHTMLAttributes<HTMLInputElement>) {
   const hasError = errors && errors.length > 0;
 
   return (
@@ -26,11 +27,12 @@ export default function FormInput({
         <input
           name={name}
           type={type}
-          className={`grow bg-[#2d3f53] h-14 pl-10 focus:ring-2 focus:ring-[#7695b8] ${
+          className={`grow bg-gray h-12 pl-10 focus:ring-2 focus:ring-rose ${
             hasError ? 'outline outline-2 outline-red-500' : ''
           }`}
           placeholder={placeholder}
           required={required}
+          {...rest}
         />
       </label>
       {errors &&
