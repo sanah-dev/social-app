@@ -1,22 +1,24 @@
 'use client';
 
-import { ChevronLeftIcon } from './icon';
+import { RiArrowLeftSLine } from '@remixicon/react';
 
 interface ButtonProps {
   children?: string;
+  className?: string;
 }
 
-export default function ButtonPrev({ children }: ButtonProps) {
+export default function ButtonPrev({ children, className }: ButtonProps) {
   const handleClick = () => {
     window.history.back();
   };
 
   return (
-    <span className='opacity-70'>
-      <button onClick={handleClick} className='flex items-center justify-start'>
-        <ChevronLeftIcon width={24} height={24} />
-        {children}
-      </button>
-    </span>
+    <button
+      onClick={handleClick}
+      className={`flex items-center justify-start ${className}`}
+    >
+      <RiArrowLeftSLine size={30} />
+      {children}
+    </button>
   );
 }

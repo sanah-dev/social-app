@@ -1,10 +1,8 @@
 'use server';
 
 import db from '@/lib/db';
-import getSession from '@/lib/session';
-import { z } from 'zod';
 
-/* Tweet List */
+/* Tweet Item */
 export async function getInitialTweets() {
   const tweets = await db.tweet.findMany({
     select: {
@@ -17,8 +15,14 @@ export async function getInitialTweets() {
           username: true,
         },
       },
+      _count: {
+        select: {
+          likes: true,
+          comments: true,
+        },
+      },
     },
-    take: 3,
+    take: 5,
     orderBy: {
       created_at: 'desc',
     },
@@ -34,10 +38,43 @@ export async function getTweets(page: number) {
       tweet: true,
       views: true,
       created_at: true,
-      updated_at: true,
       user: {
         select: {
           username: true,
+        },
+      },
+      _count: {
+        select: {
+          likes: true,
+          comments: true,
+        },
+      },
+    },
+    take: 3,
+    skip: page * 3,
+    orderBy: {
+      created_at: 'desc',
+    },
+  });
+  return tweets;
+}
+
+export async function getTweetMore(page: number) {
+  const tweets = await db.tweet.findMany({
+    select: {
+      id: true,
+      tweet: true,
+      views: true,
+      created_at: true,
+      user: {
+        select: {
+          username: true,
+        },
+      },
+      _count: {
+        select: {
+          likes: true,
+          comments: true,
         },
       },
     },
@@ -68,6 +105,12 @@ export async function getTweetDetails(id: number) {
           email: true,
         },
       },
+      _count: {
+        select: {
+          likes: true,
+          comments: true,
+        },
+      },
       likes: {
         select: {
           user: true,
@@ -76,37 +119,4 @@ export async function getTweetDetails(id: number) {
     },
   });
   return tweet;
-}
-
-/* Tweet Add */
-const tweetSchema = z.object({
-  tweet_add: z
-    .string()
-    .min(1, '글자를 입력해주세요.')
-    .max(500, '최대 500글자까지 작성 가능합니다.'),
-});
-export async function createTweet(prevState: any, formData: FormData) {
-  const tweet_add = formData.get('tweet_add');
-  const result = tweetSchema.safeParse({ tweet_add });
-
-  if (!result.success) {
-    return { error: result.error.errors[0].message };
-  }
-
-  const session = await getSession();
-  await db.tweet.create({
-    data: {
-      tweet: result.data.tweet_add,
-      user: {
-        connect: {
-          id: session.id,
-        },
-      },
-    },
-    select: {
-      id: true,
-    },
-  });
-
-  return { success: true };
 }

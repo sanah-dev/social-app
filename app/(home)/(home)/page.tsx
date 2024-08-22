@@ -1,11 +1,10 @@
-import TweetAdd from '@/components/tweet-add';
 import TweetList from '@/components/tweet-list';
 import { Prisma } from '@prisma/client';
 import { getInitialTweets } from './actions';
 
 export type InitialTweets = Prisma.PromiseReturnType<typeof getInitialTweets>;
 
-export default async function Tweets() {
+export default async function HomePage() {
   const initialTweets = await getInitialTweets();
   return (
     <>
@@ -18,7 +17,7 @@ export default async function Tweets() {
       </div> */}
 
       <TweetList initialTweets={initialTweets} />
-      <TweetAdd />
+      {/* <TweetAdd /> */}
     </>
   );
 }

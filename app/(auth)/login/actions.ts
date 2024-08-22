@@ -36,7 +36,6 @@ export async function logIn(prevState: any, formData: FormData) {
   const result = await formSchema.safeParseAsync(data);
 
   if (!result.success) {
-    console.log(result.error.flatten());
     return result.error.flatten();
   } else {
     const user = await db.user.findUnique({
@@ -57,7 +56,7 @@ export async function logIn(prevState: any, formData: FormData) {
       session.id = user!.id;
       await session.save();
 
-      redirect('/profile');
+      redirect('/users');
     } else {
       return {
         fieldErrors: {

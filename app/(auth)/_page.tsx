@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main>
+    <div className='wrapper'>
       <section className='img-bg'>
         <div className='flex flex-col items-center justify-between h-full p-6 py-20'>
           <div className='flex flex-col items-center gap-2'>
@@ -15,11 +15,11 @@ export default function Home() {
           <div className='flex flex-col items-center gap-5 w-full'>
             <Link
               href='/create-account'
-              className='block w-full h-12 text-center py-3 bg-rose text-light'
+              className='block w-full h-12 text-center py-3 bg-rose text-white'
             >
               시작하기
             </Link>
-            <div className='flex gap-2 text-light opacity-70'>
+            <div className='flex gap-2 text-white opacity-70'>
               <span>이미 계정이 있나요?</span>
               <Link href='/login' className='hover:underline'>
                 로그인
@@ -28,6 +28,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

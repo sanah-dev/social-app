@@ -4,14 +4,16 @@
 
 @layer base {
   :root {
-    /* --color-black: #151d23; */
-    --color-black: #181d2e;
-    --color-gray: #1d2237;
-    --color-skeleton: #21263a;
-    --color-white: #ecf0f1;
-    --color-yellow: #f1c40f;
-    --color-purple: #9b59b6;
+    --color-dark: #27272a; /* text-zinc-800 */
     --color-rose: #fc427b;
+
+    --device-width: 393px;
+    --device-height: 852px;
+    --header-height: 56px;
+    --tab-height: 64px;
+    --tweets-inner-height: calc(
+      (var(--device-height) - (var(--header-height)) - (var(--tab-height)))
+    );
   }
 
   * {
@@ -19,8 +21,8 @@
   }
 
   body {
-    color: var(--color-white);
-    background: #0f121c;
+    color: var(--color-dark);
+    background: #151d23;
     font-size: 14px;
   }
   textarea,
@@ -31,7 +33,7 @@
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px var(--color-black) inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px var(--color-dark) inset !important;
     -webkit-text-fill-color: var(--color-white);
   }
 
@@ -49,56 +51,37 @@
   textarea {
     resize: none;
   }
-
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-
-  main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-  }
-
-  section {
-    /* margin: auto; */
-    width: 393px;
-    height: 852px;
-    overflow-y: auto;
-  }
-
-  h1 {
-    font-weight: 700;
-  }
 }
 
 @layer components {
+  .wrapper {
+    @apply flex items-center justify-center w-screen h-screen m-auto;
+  }
+
+  .device {
+    @apply flex flex-col justify-between w-device h-device overflow-y-auto;
+  }
+
+  .device-inner {
+    @apply h-[calc(852px-64px)] overflow-y-auto;
+  }
+
+  .detail-inner {
+    @apply h-[calc(852px-64px-56px-50px)] overflow-y-auto;
+  }
+
   .img-bg {
     @apply bg-screen bg-cover bg-center shadow-lg;
   }
   .img-logo {
     @apply bg-logo bg-contain bg-no-repeat bg-center drop-shadow-neon;
   }
-  .content {
-    @apply relative flex flex-col gap-8 h-full py-8 px-6;
-  }
+
+  /* .content {
+    @apply relative flex flex-col gap-8 h-full;
+  } */
+
   .title-box {
     @apply flex flex-col gap-2;
-  }
-  .hr {
-    border-top: 1px solid gray;
-  }
-  .hr > span {
-    @apply inline-block p-3 -mt-5 bg-dark;
-  }
-  .link-btn {
-    @apply flex gap-3 items-center justify-center w-[calc(50%-4px)] h-12 p-2 bg-[#242b43] transition-all ease-in-out duration-[0.4s] hover:bg-purple;
-  }
-  .footer-btn {
-    @apply absolute bottom-6 left-6 block w-[calc(100%-3rem)] h-12 text-center py-3 bg-rose text-light;
   }
 }

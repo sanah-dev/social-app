@@ -1,11 +1,18 @@
-export default function TabLayout({ children }: { children: React.ReactNode }) {
+import Header from '@/components/header';
+import TabBar from '@/components/tab-bar';
+
+export default async function TabLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <main>
-      <section className='bg-dark'>
-        <div className='content'>
-          <div className='flex flex-col justify-between h-full'>{children}</div>
-        </div>
-      </section>
-    </main>
+    <section className='wrapper'>
+      <div className='device bg-white'>
+        <Header />
+        <div className='device-inner'>{children}</div>
+        <TabBar />
+      </div>
+    </section>
   );
 }

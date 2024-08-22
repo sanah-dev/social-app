@@ -20,20 +20,21 @@ const config: Config = {
       },
       dropShadow: {
         neon: '0 0 2px #fff20082',
-      },
-      boxShadow: {
-        card: '0px 8px 10px 0px #0e111c',
+        dark: '0 0 2px #000000',
       },
 
       colors: {
-        light: 'var(--color-white)',
-        gray: 'var(--color-gray)',
-        dark: 'var(--color-black)',
-        skeleton: 'var(--color-skeleton)',
-        yellow: 'var(--color-yellow)',
-        purple: 'var(--color-purple)',
-        sky: 'var(--color-sky)',
+        dark: 'var(--color-dark)',
         rose: 'var(--color-rose)',
+      },
+
+      width: {
+        device: 'var(--device-width)',
+      },
+      height: {
+        device: 'var(--device-height)',
+        tab: 'var(--tab-height)',
+        tweets_inner_height: 'var(--tweets-inner-height)',
       },
     },
   },

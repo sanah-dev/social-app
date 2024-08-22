@@ -1,11 +1,14 @@
 export default function TabLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main>
-      <section className='bg-dark'>
-        <div className='content'>
-          <div className='flex flex-col justify-between h-full'>{children}</div>
+    <div className='wrapper'>
+      <div className='device bg-white'>
+        <div className='device-inner'>
+          <div className='flex flex-col justify-between h-full'>
+            {children}
+            {/*  */}
+          </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }

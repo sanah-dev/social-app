@@ -1,31 +1,48 @@
-import { formatToMaxLength, formatToTimeAgo } from '@/lib/utils';
+import { formatToDateTime, formatToTimeAgo } from '@/lib/utils';
+import { RiChat1Line, RiHeart3Line } from '@remixicon/react';
 import Link from 'next/link';
+import ButtonLike from './button-like';
 
 export interface TweetProps {
-  tweet: string;
   id: number;
+  tweet: string;
   user: { username: string };
   created_at: Date;
+  likes: number;
+  comments: number;
 }
 
-export default function TweetItem({ tweet, id, user, created_at }: TweetProps) {
+export default function TweetItem({
+  tweet,
+  id,
+  user,
+  created_at,
+  likes,
+  comments,
+}: TweetProps) {
   return (
-    <li className='p-2 bg-light border-2 rounded-xl overflow-hidden hover:border-rose'>
-      <Link href={`/tweets/${id}`} className='flex flex-col *:text-dark'>
-        <div className='flex justify-between p-1 border-b border-stone-300'>
-          <div className='flex items-center gap-2'>
-            <span>🙂</span>
-            <span>{user.username}</span>
-          </div>
-          <small>{formatToTimeAgo(created_at.toString())}</small>
+    <section className='flex flex-col'>
+      <div className='flex items-center gap-2 p-4'>
+        <span className='size-7 min-w-[28px] bg-zinc-300 rounded-full' />
+        <div className='flex flex-col'>
+          <span className='text-sm'>{user.username}</span>
+          <time className='text-xs text-zinc-400'>
+            {formatToDateTime(created_at.toString())}
+          </time>
         </div>
+      </div>
 
-        <p className='p-3 px-1'>{formatToMaxLength(tweet, 100)}</p>
+      <div className='px-4'>{tweet}</div>
 
-        <div className='flex items-center gap-2 p-1 border-t border-stone-300'>
-          <span>💬 0</span> <span>❤️ 0</span>
-        </div>
-      </Link>
-    </li>
+      <div className='flex items-center gap-4 mt-4 px-4 py-3 border-t border-t-zinc-100'>
+        <span className='flex items-center gap-1'>
+          <ButtonLike isLiked={false} likeCount={likes} tweetId={id} />
+        </span>
+        <span className='flex items-center gap-1'>
+          <RiChat1Line className='size-5 text-zinc-400' />
+          <span className='text-xs text-zinc-400'>{comments}</span>
+        </span>
+      </div>
+    </section>
   );
 }

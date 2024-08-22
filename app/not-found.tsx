@@ -8,7 +8,10 @@ export default function NotFoundPage() {
         <h2 className='text-lg'>페이지 정보가 없어요 😥</h2>
         <p>입력하신 주소가 정확한지 확인해주세요.</p>
       </div>
-      <Link href='/' className='footer-btn'>
+      <Link
+        href='/'
+        className='absolute bottom-6 left-6 block w-[calc(100%-3rem)] h-12 text-center py-3 bg-rose text-white'
+      >
         메인으로 이동
       </Link>
     </>

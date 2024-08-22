@@ -1,9 +1,11 @@
 'use client';
 
-import { HeartIcon } from '@heroicons/react/24/solid';
-import { HeartIcon as OutlineHeartIcon } from '@heroicons/react/24/outline';
 import { useOptimistic } from 'react';
-import { likeTweet, dislikeTweet } from '@/app/(home)/tweets/[id]/actions';
+import {
+  likeTweet,
+  dislikeTweet,
+} from '@/app/(home)/(tabs)/tweets/[id]/actions';
+import { RiHeart3Fill, RiHeart3Line } from '@remixicon/react';
 
 interface LikeButtonProps {
   isLiked: boolean;
@@ -11,44 +13,55 @@ interface LikeButtonProps {
   tweetId: number;
 }
 
+interface LikeState {
+  isLiked: boolean;
+  likeCount: number;
+}
+
 export default function ButtonLike({
   isLiked,
   likeCount,
   tweetId,
 }: LikeButtonProps) {
-  const [state, reducerFn] = useOptimistic(
+  const [state, setState] = useOptimistic(
     { isLiked, likeCount },
-    (previousState) => ({
-      isLiked: !previousState.isLiked,
-      likeCount: previousState.isLiked
-        ? previousState.likeCount - 1
-        : previousState.likeCount + 1,
+    (prevState) => ({
+      isLiked: !prevState.isLiked,
+      likeCount: prevState.isLiked
+        ? prevState.likeCount - 1
+        : prevState.likeCount + 1,
     })
   );
+
   const onClick = async () => {
-    reducerFn(undefined);
-    if (isLiked) {
-      await dislikeTweet(tweetId);
-    } else {
-      await likeTweet(tweetId);
+    // Optimistic UI 업데이트
+    setState(undefined);
+
+    try {
+      if (state.isLiked) {
+        await dislikeTweet(tweetId);
+      } else {
+        await likeTweet(tweetId);
+      }
+    } catch (error) {
+      setState((prevState: LikeState) => ({
+        ...prevState,
+        isLiked: prevState.isLiked,
+        likeCount: prevState.likeCount,
+      }));
+      console.error('Failed to update like status:', error);
     }
   };
+
   return (
-    <button
-      onClick={onClick}
-      // className={`flex items-center gap-2 ${state.isLiked ? 'text-dark' : ''}`}
-    >
+    <button onClick={onClick} className='flex items-center gap-1'>
       {state.isLiked ? (
-        <HeartIcon className='size-4 text-red-500' />
+        <RiHeart3Fill className='size-5 text-rose' />
       ) : (
-        <OutlineHeartIcon className='size-4 text-stone-400' />
+        <RiHeart3Line className='size-5 text-stone-400' />
       )}
 
-      {/* {state.isLiked ? (
-        <span>{state.likeCount}</span>
-      ) : (
-        <span>공감하기 ({state.likeCount})</span>
-      )} */}
+      <span className='text-zinc-400'>{state.likeCount}</span>
     </button>
   );
 }
