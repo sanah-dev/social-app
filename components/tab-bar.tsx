@@ -36,7 +36,7 @@ export default function TabBar() {
         <Link
           key={idx}
           href={tab.href}
-          className='flex flex-col items-center justify-center gap-px h-16 text-xs text-zinc-400 hover:text-zinc-600'
+          className='flex flex-col items-center justify-center gap-1 h-16 text-xs text-zinc-400 hover:text-zinc-600'
         >
           {pathname === tab.href ? tab.icon.active : tab.icon.inactive}
           {pathname === tab.href ? (

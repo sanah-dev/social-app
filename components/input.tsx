@@ -27,7 +27,7 @@ export default function Input({
         <input
           name={name}
           type={type}
-          className={`grow bg-zinc-400 h-12 pl-10 focus:ring-2 focus:ring-rose ${
+          className={`grow bg-zinc-50 h-12 pl-10 focus:ring-2 focus:ring-rose ${
             hasError ? 'outline outline-2 outline-red-500' : ''
           }`}
           placeholder={placeholder}

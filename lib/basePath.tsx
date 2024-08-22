@@ -84,40 +84,40 @@ export const baseTabItems: ITabPath[] = [
     label: '트윗',
     href: '/',
     icon: {
-      active: <RiHomeFill size={20} className='text-zinc-600' />,
-      inactive: <RiHomeLine size={20} />,
+      active: <RiHomeFill size={18} className='text-zinc-600' />,
+      inactive: <RiHomeLine size={18} />,
     },
   },
   {
     label: '검색',
     href: '/search',
     icon: {
-      active: <RiSearchFill size={20} className='text-zinc-600' />,
-      inactive: <RiSearchLine size={20} />,
+      active: <RiSearchFill size={18} className='text-zinc-600' />,
+      inactive: <RiSearchLine size={18} />,
     },
   },
   {
     label: '추가',
     href: '/tweets/add',
     icon: {
-      active: <RiAddBoxFill size={20} className='text-zinc-600' />,
-      inactive: <RiAddBoxLine size={20} />,
+      active: <RiAddBoxFill size={18} className='text-zinc-600' />,
+      inactive: <RiAddBoxLine size={18} />,
     },
   },
   {
     label: '저장',
     href: '/saved',
     icon: {
-      active: <RiBookmarkFill size={20} className='text-zinc-600' />,
-      inactive: <RiBookmarkLine size={20} />,
+      active: <RiBookmarkFill size={18} className='text-zinc-600' />,
+      inactive: <RiBookmarkLine size={18} />,
     },
   },
   {
     label: '프로필',
     href: '/users/:id', // 기본값
     icon: {
-      active: <RiUserFill size={20} className='text-zinc-600' />,
-      inactive: <RiUserLine size={20} />,
+      active: <RiUserFill size={18} className='text-zinc-600' />,
+      inactive: <RiUserLine size={18} />,
     },
   },
 ];

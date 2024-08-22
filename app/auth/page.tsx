@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <div className='wrapper'>
-      <section className='img-bg'>
+      <section className='device img-bg *:text-white'>
         <div className='flex flex-col items-center justify-between h-full p-6 py-20'>
           <div className='flex flex-col items-center gap-2'>
             <i className='img-logo w-full min-w-80 h-24' />
@@ -15,7 +15,7 @@ export default function Home() {
           <div className='flex flex-col items-center gap-5 w-full'>
             <Link
               href='/create-account'
-              className='block w-full h-12 text-center py-3 bg-rose text-white'
+              className='block w-full h-12 text-center py-3 bg-rose '
             >
               시작하기
             </Link>
