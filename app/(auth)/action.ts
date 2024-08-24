@@ -26,9 +26,6 @@ export interface TweetProps {
     user: {
       id: number;
       username: string;
-      password: string;
-      email: string;
-      bio: string | null;
       created_at: Date;
       updated_at: Date;
     };
@@ -40,7 +37,6 @@ export interface CommentProps {
   user: {
     id: number;
     username: string;
-    email: string;
   };
   tweet: {
     userId: number;
@@ -69,10 +65,18 @@ export async function getUser() {
 }
 
 /* 로그아웃 */
+// export async function logOut() {
+//   const session = await getSession();
+//   session.destroy();
+//   return redirect('/auth');
+// }
 export async function logOut() {
-  const session = await getSession();
-  session.destroy();
-  redirect('/login');
+  const session = await getSession(); // 세션 가져오기
+  if (session) {
+    session.destroy(); // 세션 삭제
+  }
+  // 리다이렉트 반환
+  return redirect('/auth'); // 클라이언트 측에서 리다이렉션을 수행하도록 리턴
 }
 
 /* 사용자별 트윗 가져오기 */
