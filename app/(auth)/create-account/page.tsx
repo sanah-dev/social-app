@@ -10,7 +10,7 @@ import {
   RiMailLine,
   RiUserLine,
 } from '@remixicon/react';
-import SocialLogin from '@/components/social-login';
+import SocialLogin from '@/components/button-social';
 
 export default function Home() {
   const [state, dispatch] = useFormState(createAccount, null);

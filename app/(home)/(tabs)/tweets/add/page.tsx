@@ -46,7 +46,7 @@ export default function TweetAddPage() {
             name='tweet_add'
             placeholder='5글자 이상 입력해주세요. 연락처 등 개인정보가 포함된 글은 작성하지 않게 참고해주세요.'
             value={tweetText}
-            rows={1}
+            rows={2}
             onChange={handleChange}
           ></textarea>
 

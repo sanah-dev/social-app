@@ -5,7 +5,7 @@ import ButtonLike from './button-like';
 export interface TweetProps {
   id: number;
   tweet: string;
-  user: { username: string };
+  user: { username: string; avatar?: string };
   created_at: Date;
   likes: number;
   comments: number;
@@ -22,7 +22,13 @@ export default function TweetItem({
   return (
     <section className='flex flex-col'>
       <div className='flex items-center gap-2 p-4'>
-        <span className='size-7 min-w-[28px] bg-zinc-300 rounded-full' />
+        <img
+          src={user.avatar}
+          alt={user.username}
+          width={28}
+          height={28}
+          className='rounded-full overflow-hidden border border-zinc-300'
+        />
         <div className='flex flex-col'>
           <span className='text-sm'>{user.username}</span>
           <time className='text-xs text-zinc-400'>

@@ -10,7 +10,7 @@ export function CommentItem({
   commentDelete,
 }: {
   id: number;
-  user: { username: string; id: number };
+  user: { username: string; id: number; avatar?: string };
   created_at: Date;
   payload: string;
   userId: number;
@@ -19,7 +19,13 @@ export function CommentItem({
   return (
     <li key={id} className='relative border-b border-zinc-100'>
       <div className='flex flex-1 gap-2 p-4'>
-        <span className='size-7 min-w-[28px] bg-zinc-300 rounded-full' />
+        <img
+          src={user.avatar}
+          alt={user.username}
+          width={32}
+          height={32}
+          className='size-8 min-w-[32px] border border-zinc-300 rounded-full overflow-hidden'
+        />
 
         <div className='flex flex-col gap-1'>
           <span className='text-sm'>

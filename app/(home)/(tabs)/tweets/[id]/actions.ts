@@ -56,6 +56,7 @@ export async function commentAdd(
     return { error: '댓글 생성에 실패했습니다.' };
   }
 }
+
 export async function commentDelete(id: number) {
   try {
     await db.comment.delete({

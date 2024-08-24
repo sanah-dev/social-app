@@ -9,20 +9,27 @@ export interface UserProps {
   username: string;
   password: string;
   email: string;
+  avatar?: string;
   bio: string | null;
   created_at: Date;
   updated_at: Date;
+  tweets: {
+    user: {
+      id: number;
+    };
+  };
 }
 
 export interface TweetProps {
   user: {
+    id: number;
     username: string;
-    email: string;
+    avatar?: string;
   };
   id: number;
   created_at: Date;
   updated_at: Date;
-  Likes: {
+  likes: {
     user: {
       id: number;
       username: string;
@@ -37,6 +44,7 @@ export interface CommentProps {
   user: {
     id: number;
     username: string;
+    avatar?: string;
   };
   tweet: {
     userId: number;

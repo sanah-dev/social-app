@@ -3,7 +3,6 @@
 import { CommentProps } from '@/app/(auth)/action';
 import { commentDelete } from '@/app/(home)/(tabs)/tweets/[id]/actions';
 import { CommentItem } from './comment-Item';
-import { comment } from 'postcss';
 
 export default function CommentList({
   id,
