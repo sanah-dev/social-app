@@ -15,7 +15,7 @@ export default async function Profile() {
         <p>오늘도 방문해 주셔서 감사합니다.</p>
 
         <h1>/users/[username]/edit</h1>
-        <p>프로필 편집</p>
+        <p>프로필 수정</p>
         <p>사용자 이름, 이메일, 자기소개, 비밀번호 변경</p>
       </div>
     </>

@@ -73,7 +73,6 @@ export async function commentDelete(id: number) {
 
 /* 좋아요 */
 export async function likeTweet(tweetId: number) {
-  await new Promise((r) => setTimeout(r, 10000));
   const session = await getSession();
   try {
     await db.like.create({
@@ -86,8 +85,7 @@ export async function likeTweet(tweetId: number) {
   } catch (e) {}
 }
 
-export async function dislikeTweet(tweetId: number) {
-  await new Promise((r) => setTimeout(r, 10000));
+export async function unLikeTweet(tweetId: number) {
   try {
     const session = await getSession();
     await db.like.delete({
@@ -99,5 +97,34 @@ export async function dislikeTweet(tweetId: number) {
       },
     });
     revalidateTag(`like-status-${tweetId}`);
+  } catch (e) {}
+}
+
+/* 저장 */
+export async function saveTweet(tweetId: number) {
+  const session = await getSession();
+  try {
+    await db.like.create({
+      data: {
+        tweetId,
+        userId: session.id!,
+      },
+    });
+    revalidateTag(`save-status-${tweetId}`);
+  } catch (e) {}
+}
+
+export async function unSaveTweet(tweetId: number) {
+  try {
+    const session = await getSession();
+    await db.like.delete({
+      where: {
+        id: {
+          tweetId,
+          userId: session.id!,
+        },
+      },
+    });
+    revalidateTag(`save-status-${tweetId}`);
   } catch (e) {}
 }

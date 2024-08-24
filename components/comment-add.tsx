@@ -5,7 +5,7 @@ import { RiArrowUpCircleFill, RiLoader2Line } from '@remixicon/react';
 import { useCallback } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 
-const CommentAdd = ({ id }: { id: number }) => {
+export default function CommentAdd({ id }: { id: number }) {
   const commentAddWithId = useCallback(
     (prevState: any, formData: FormData) => commentAdd(id, prevState, formData),
     [id]
@@ -45,16 +45,4 @@ const CommentAdd = ({ id }: { id: number }) => {
       </button>
     </form>
   );
-};
-
-// const CommentAdd = ({ id }: { id: number }) => {
-//   const commentAddWithId = useCallback(
-//     (prevState: any, formData: FormData) => commentAdd(id, prevState, formData),
-//     [id]
-//   );
-//   const [state, dispatch] = useFormState(commentAddWithId, null);
-
-//   return <CommentForm action={dispatch} errors={state?.error} />;
-// };
-
-export default CommentAdd;
+}

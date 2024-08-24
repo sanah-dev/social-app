@@ -1,6 +1,5 @@
-import { formatToDateTime, formatToTimeAgo } from '@/lib/utils';
-import { RiChat1Line, RiHeart3Line } from '@remixicon/react';
-import Link from 'next/link';
+import { formatToDateTime } from '@/lib/utils';
+import { RiBookmarkLine, RiChat1Line, RiHeart3Line } from '@remixicon/react';
 import ButtonLike from './button-like';
 
 export interface TweetProps {
@@ -32,15 +31,17 @@ export default function TweetItem({
         </div>
       </div>
 
-      <div className='px-4'>{tweet}</div>
+      <div className='px-4 break-words'>{tweet}</div>
 
-      <div className='flex items-center gap-4 mt-4 px-4 py-3 border-t border-t-zinc-100'>
-        <span className='flex items-center gap-1'>
-          <ButtonLike isLiked={false} likeCount={likes} tweetId={id} />
-        </span>
-        <span className='flex items-center gap-1'>
-          <RiChat1Line className='size-5 text-zinc-400' />
-          <span className='text-xs text-zinc-400'>{comments}</span>
+      <div className='flex items-center justify-between gap-4 mt-4 px-4 py-3 border-t border-t-zinc-100'>
+        <span className='flex items-center justify-center gap-4'>
+          <span className='flex items-center gap-1'>
+            <ButtonLike isLiked={false} likeCount={likes} tweetId={id} />
+          </span>
+          <span className='flex items-center gap-1'>
+            <RiChat1Line className='size-5 text-zinc-400' />
+            <span className='text-xs text-zinc-400'>{comments}</span>
+          </span>
         </span>
       </div>
     </section>

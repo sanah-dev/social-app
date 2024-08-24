@@ -3,11 +3,14 @@
 import { RiArrowLeftSLine } from '@remixicon/react';
 
 interface ButtonProps {
-  children?: string;
+  children?: React.ReactNode;
   className?: string;
 }
 
-export default function ButtonPrev({ children, className }: ButtonProps) {
+export default function ButtonPrev({
+  children = <RiArrowLeftSLine size={30} />,
+  className,
+}: ButtonProps) {
   const handleClick = () => {
     window.history.back();
   };
@@ -17,7 +20,6 @@ export default function ButtonPrev({ children, className }: ButtonProps) {
       onClick={handleClick}
       className={`flex items-center justify-start ${className}`}
     >
-      <RiArrowLeftSLine size={30} />
       {children}
     </button>
   );

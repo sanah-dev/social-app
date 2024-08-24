@@ -63,7 +63,7 @@
   }
 
   .device-inner {
-    @apply h-[calc(852px-64px)] overflow-y-auto;
+    @apply relative h-[calc(852px-64px)] overflow-y-auto;
   }
 
   .detail-inner {

@@ -10,7 +10,7 @@ export default async function TabLayout({
     <section className='wrapper'>
       <div className='device bg-white'>
         <Header />
-        <div className='device-inner'>{children}</div>
+        <section className='device-inner'>{children}</section>
         <TabBar />
       </div>
     </section>

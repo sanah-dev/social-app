@@ -3,7 +3,7 @@
 import { useOptimistic } from 'react';
 import {
   likeTweet,
-  dislikeTweet,
+  unLikeTweet,
 } from '@/app/(home)/(tabs)/tweets/[id]/actions';
 import { RiHeart3Fill, RiHeart3Line } from '@remixicon/react';
 
@@ -39,7 +39,7 @@ export default function ButtonLike({
 
     try {
       if (state.isLiked) {
-        await dislikeTweet(tweetId);
+        await unLikeTweet(tweetId);
       } else {
         await likeTweet(tweetId);
       }

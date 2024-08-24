@@ -3,6 +3,8 @@ import {
   RiAddBoxLine,
   RiBookmarkFill,
   RiBookmarkLine,
+  RiHeart3Fill,
+  RiHeart3Line,
   RiHomeFill,
   RiHomeLine,
   RiSearchFill,
@@ -39,8 +41,8 @@ export const basePathItems: IHeaderPath[] = [
     prev: false,
   },
   {
-    label: '내가 저장한 트윗',
-    href: '/saved',
+    label: '내가 좋아한 트윗',
+    href: '/likes',
     prev: false,
   },
   {
@@ -49,23 +51,8 @@ export const basePathItems: IHeaderPath[] = [
     prev: false,
   },
   {
-    label: '프로필 편집',
+    label: '프로필 수정',
     href: '/users/:id/edit', // 기본값
-    prev: true,
-  },
-  {
-    label: '프로필 편집',
-    href: '/users/:id/edit', // 기본값
-    prev: true,
-  },
-  {
-    label: '내가 작성한 트윗',
-    href: '/users/:id/tweets', // 기본값
-    prev: true,
-  },
-  {
-    label: '내가 좋아한 트윗',
-    href: '/users/:id/likes', // 기본값
     prev: true,
   },
 ];
@@ -105,11 +92,11 @@ export const baseTabItems: ITabPath[] = [
     },
   },
   {
-    label: '저장',
-    href: '/saved',
+    label: '좋아요',
+    href: '/likes',
     icon: {
-      active: <RiBookmarkFill size={18} className='text-zinc-600' />,
-      inactive: <RiBookmarkLine size={18} />,
+      active: <RiHeart3Fill size={18} className='text-zinc-600' />,
+      inactive: <RiHeart3Line size={18} />,
     },
   },
   {

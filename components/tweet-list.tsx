@@ -125,7 +125,7 @@ export default function TweetList({
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className='fixed bottom-[110px] right-[70px] p-[10px] bg-rose text-white rounded-full'
+          className='absolute right-5 bottom-4 p-[10px] text-zinc-400 bg-zinc-50 border border-zinc-400 rounded-lg'
           aria-label='Scroll to top'
         >
           <RiArrowUpLine size={20} />
