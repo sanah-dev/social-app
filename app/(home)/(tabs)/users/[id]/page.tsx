@@ -30,7 +30,6 @@ export default async function UserPage() {
           />
         </Link>
         <span className='text-base'>{user?.username}</span>
-        <p className='text-sm text-zinc-600'>안녕하세요 👋</p>
         {user.bio && <p className='text-sm text-zinc-600'>{user.bio}</p>}
 
         <button

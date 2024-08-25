@@ -14,6 +14,13 @@ export async function getUser() {
       where: {
         id: session.id,
       },
+      select: {
+        id: true,
+        username: true,
+        email: true,
+        avatar: true,
+        bio: true,
+      },
     });
     return user || null;
   }

@@ -23,36 +23,7 @@ export async function getInitialTweets() {
         },
       },
     },
-    take: 5,
-    orderBy: {
-      created_at: 'desc',
-    },
-  });
-  return tweets;
-}
-
-/* Tweet Item */
-export async function getTweets(page: number) {
-  const tweets = await db.tweet.findMany({
-    select: {
-      id: true,
-      tweet: true,
-      views: true,
-      created_at: true,
-      user: {
-        select: {
-          username: true,
-        },
-      },
-      _count: {
-        select: {
-          likes: true,
-          comments: true,
-        },
-      },
-    },
-    take: 3,
-    skip: page * 3,
+    take: 7,
     orderBy: {
       created_at: 'desc',
     },
@@ -70,6 +41,7 @@ export async function getTweetMore(page: number) {
       user: {
         select: {
           username: true,
+          avatar: true,
         },
       },
       _count: {
