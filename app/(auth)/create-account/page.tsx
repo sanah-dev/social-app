@@ -10,6 +10,7 @@ import {
   RiMailLine,
   RiUserLine,
 } from '@remixicon/react';
+import SocialLogin from '@/components/button/button-social';
 // import SocialLogin from '@/components/button/button-social';
 
 export default function Home() {
@@ -57,7 +58,7 @@ export default function Home() {
 
         <FormButton>가입하기</FormButton>
       </form>
-      {/* <SocialLogin /> */}
+      <SocialLogin />
     </>
   );
 }

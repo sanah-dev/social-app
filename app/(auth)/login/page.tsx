@@ -5,6 +5,7 @@ import FormInput from '@/components/common/input';
 import { useFormState } from 'react-dom';
 import { logIn } from './actions';
 import { RiKey2Line, RiMailLine } from '@remixicon/react';
+import SocialLogin from '@/components/button/button-social';
 
 export default function LogIn() {
   const [state, dispatch] = useFormState(logIn, null);
@@ -35,6 +36,8 @@ export default function LogIn() {
 
         <FormButton>로그인</FormButton>
       </form>
+
+      <SocialLogin />
     </>
   );
 }
