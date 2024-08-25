@@ -9,6 +9,9 @@ const config: Config = {
   plugins: [],
   theme: {
     extend: {
+      fontFamily: {
+        brush: ["'Caveat Brush'", 'sans-serif'],
+      },
       backgroundImage: {
         screen:
           'radial-gradient(circle, rgba(21, 29, 35, 0) 0%, rgba(21, 29, 35, 1) 100%), url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/099bd5199183793.66547d97cc73a.jpg")',

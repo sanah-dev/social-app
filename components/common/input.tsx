@@ -6,6 +6,7 @@ import {
 } from 'react';
 
 interface InputProps {
+  text?: string;
   type?: string;
   placeholder?: string;
   required?: boolean;
@@ -17,6 +18,7 @@ interface InputProps {
 
 const _Input = (
   {
+    text,
     type = 'text',
     placeholder,
     required,
@@ -31,15 +33,15 @@ const _Input = (
   const hasError = errors && errors.length > 0;
   return (
     <>
-      <label
-        className={`relative flex items-center gap-4 my-1 mt-3 ${className}`}
-      >
+      <h3 className='mt-3 text-xs text-zinc-500'>{text}</h3>
+
+      <label className={`relative flex items-center gap-4 my-1 ${className}`}>
         {icon}
         <input
           ref={ref}
           name={name}
           type={type}
-          className={`grow bg-zinc-50 h-12 pl-10 focus:ring-2 focus:ring-rose ${
+          className={`grow bg-white h-12 pl-10 rounded-md ring-1 ring-zinc-300 focus:ring-2 focus:ring-rose ${
             hasError ? 'outline outline-2 outline-red-500' : ''
           }`}
           placeholder={placeholder}
@@ -49,7 +51,7 @@ const _Input = (
       </label>
 
       {errors.map((error, index) => (
-        <span key={index} className='text-red-500 font-medium'>
+        <span key={index} className='text-red-500 text-xs'>
           * {error}
         </span>
       ))}

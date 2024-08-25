@@ -6,38 +6,66 @@ import { useFormState } from 'react-dom';
 import { logIn } from './actions';
 import { RiKey2Line, RiMailLine } from '@remixicon/react';
 import SocialLogin from '@/components/button/button-social';
+import Link from 'next/link';
+import Image from 'next/image';
+import VisualImage from '@/public/auth/login.png';
 
 export default function LogIn() {
   const [state, dispatch] = useFormState(logIn, null);
   return (
     <>
       <div className='title-box'>
-        <h1 className='text-2xl text-rose'>로그인</h1>
-        <h2 className='text-lg'>👋 다시 만나서 반가워요</h2>
-        <p>가입하신 이메일과 비밀번호를 입력해주세요.</p>
+        <div className='flex flex-col items-center justify-center gap-6 w-full h-80 pt-10'>
+          <Image
+            src={VisualImage}
+            alt=''
+            width={360}
+            height={270}
+            className='w-full object-contain size-36'
+          />
+          <h1 className='text-5xl font-brush'>Welcome back!</h1>
+        </div>
       </div>
 
-      <form action={dispatch} className='flex flex-col'>
-        <FormInput
-          name='email'
-          type='text'
-          placeholder='이메일 입력'
-          errors={state?.fieldErrors?.email}
-          icon={<RiMailLine size={14} className='absolute left-3' />}
-        />
+      <section>
+        <form action={dispatch} className='flex flex-col'>
+          <FormInput
+            text='Email Address'
+            name='email'
+            type='text'
+            placeholder='Enter your email'
+            errors={state?.fieldErrors?.email}
+            icon={
+              <RiMailLine size={14} className='absolute left-3 text-zinc-400' />
+            }
+          />
 
-        <FormInput
-          name='password'
-          type='password'
-          placeholder='비밀번호 입력'
-          errors={state?.fieldErrors?.password}
-          icon={<RiKey2Line size={16} className='absolute left-3' />}
-        />
+          <FormInput
+            text='Password'
+            name='password'
+            type='password'
+            placeholder='Enter your password'
+            errors={state?.fieldErrors?.password}
+            icon={
+              <RiKey2Line size={16} className='absolute left-3 text-zinc-400' />
+            }
+          />
 
-        <FormButton>로그인</FormButton>
-      </form>
+          <FormButton>Log in</FormButton>
+        </form>
 
-      <SocialLogin />
+        <SocialLogin />
+
+        <div className='flex items-center justify-center gap-2 py-8 pb-12'>
+          <span className='text-zinc-500'>Don't have an account?</span>
+          <Link
+            href='/create-account'
+            className='underline transition hover:text-rose'
+          >
+            Sign up
+          </Link>
+        </div>
+      </section>
     </>
   );
 }
