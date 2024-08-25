@@ -57,7 +57,7 @@ export default function LogIn() {
         <SocialLogin />
 
         <div className='flex items-center justify-center gap-2 py-8 pb-12'>
-          <span className='text-zinc-500'>Don't have an account?</span>
+          <span className='text-zinc-500'>Don&apos;t have an account?</span>
           <Link
             href='/create-account'
             className='underline transition hover:text-rose'
