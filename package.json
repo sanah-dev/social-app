@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
-    "@next/font": "^14.2.6",
     "@prisma/client": "^5.18.0",
     "@remixicon/react": "^4.2.0",
     "@types/bcrypt": "^5.0.2",
