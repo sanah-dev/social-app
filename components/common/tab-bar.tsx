@@ -38,6 +38,7 @@ export default function TabBar() {
           href={tab.href}
           className='flex flex-col items-center justify-center gap-1 h-16 text-xs text-zinc-400 hover:text-zinc-600'
         >
+          {/* TODO: 하위 자식 url일때도 icon active상태로 개선 */}
           {pathname === tab.href ? tab.icon.active : tab.icon.inactive}
           {pathname === tab.href ? (
             <span className='text-zinc-600'>{tab.label}</span>

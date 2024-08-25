@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import Input from './common/input';
+import Input from '../common/input';
 import { RiKey2Line } from '@remixicon/react';
 import { useFormState } from 'react-dom';
-import { verifyPasswordAction } from '@/app/(home)/(tabs)/users/[id]/edit/action';
+import { verifyPasswordAction } from '@/app/(home)/(tabs)/users/[id]/edit/_action';
 
 export default function _PasswordVerification() {
   const [state, dispatch] = useFormState(verifyPasswordAction, null);

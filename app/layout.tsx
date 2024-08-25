@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: '%s | 사나마나',
     default: '사나마나',
   },
-  description: '모든 것을 사고 팝니다.',
+  description: '사나마나 사는것 같지 않아~ ~ ~ ~',
 };
 
 export default function RootLayout({

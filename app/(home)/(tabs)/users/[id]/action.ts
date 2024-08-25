@@ -2,8 +2,11 @@ import db from '@/lib/db';
 
 export async function getInitialMyTweets(userId: number) {
   const tweets = await db.tweet.findMany({
+    // where: {
+    //   userId,
+    // },
     where: {
-      userId,
+      userId: userId,
     },
     select: {
       id: true,

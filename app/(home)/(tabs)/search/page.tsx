@@ -3,7 +3,9 @@ import SearchInput from '@/components/search/search-input';
 export default function SearchPage() {
   return (
     <>
-      <SearchInput />
+      <div className='px-4'>
+        <SearchInput />
+      </div>
     </>
   );
 }

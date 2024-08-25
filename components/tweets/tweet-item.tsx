@@ -17,8 +17,8 @@ export default function TweetItem({
         <UserAvatar
           width={32}
           height={32}
-          avatar={user.avatar ?? null}
-          username={user.username}
+          src={user.avatar ?? null}
+          alt={user.username}
           className='size-8'
         />
 

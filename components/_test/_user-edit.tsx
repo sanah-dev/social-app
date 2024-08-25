@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import PasswordVerification from './_user-password-verification';
-import ProfileUpdate from './_user-profile-update';
+import ProfileUpdate from '../_user-profile-update';
 
 export default function ProfileEditPage() {
   const [isPasswordValidated, setIsPasswordValidated] = useState(false);

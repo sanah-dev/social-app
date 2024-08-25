@@ -1,6 +1,6 @@
 import { getUser, logOut } from '@/app/(auth)/action';
 import MyTweetList from '@/components/tweets/tweet-list';
-import { RiEditFill, RiLogoutBoxRLine } from '@remixicon/react';
+import { RiEditFill } from '@remixicon/react';
 import Link from 'next/link';
 import { getInitialMyTweets } from './action';
 import { Prisma } from '@prisma/client';
@@ -8,10 +8,6 @@ import UserAvatar from '@/components/common/avatar';
 import NotFoundPage from '@/app/not-found';
 
 export type InitialTweets = Prisma.PromiseReturnType<typeof getInitialMyTweets>;
-
-export const metadata = {
-  title: '프로필',
-};
 
 export default async function UserPage() {
   const user = await getUser();
@@ -29,13 +25,16 @@ export default async function UserPage() {
           <UserAvatar
             width={60}
             height={60}
-            avatar={user.avatar}
-            username={user.username}
+            src={user.avatar}
+            alt={user.username}
           />
         </Link>
         <span className='text-base'>{user?.username}</span>
+        <p className='text-sm text-zinc-600'>안녕하세요 👋</p>
+        {user.bio && <p className='text-sm text-zinc-600'>{user.bio}</p>}
+
         <button
-          className='flex items-center gap-1 text-zinc-400 text-xs border p-2'
+          className='absolute right-5 flex items-center gap-1 text-zinc-400 text-xs border p-2'
           onClick={logOut}
         >
           로그아웃

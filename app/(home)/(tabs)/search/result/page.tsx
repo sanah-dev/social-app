@@ -20,8 +20,19 @@ export default async function SearchResultPage({
 
   return (
     <>
-      <SearchInput />
-      {search ? `${search}로 검색한 결과 : ${tweets.length}건` : '검색 결과'}
+      <div className='px-4'>
+        <SearchInput />
+      </div>
+      {search ? (
+        <div className='flex items-center justify-center gap-1 p-4 border-b-8 border-b-zinc-200'>
+          <span className='text-rose'>{search}</span>검색결과
+          <span>
+            <span className='text-rose'>{tweets.length}</span>개
+          </span>
+        </div>
+      ) : (
+        '검색 결과'
+      )}
 
       <TweetSearchList initialTweets={tweets} />
     </>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Input from './common/input';
+import Input from '../common/input';
 import { RiUserLine } from '@remixicon/react';
 
 export default function _ProfileUpdate({

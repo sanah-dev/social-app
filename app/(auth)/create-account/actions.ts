@@ -28,7 +28,10 @@ const checkPasswords = ({
 const formSchema = z
   .object({
     email: z.string().email('이메일 형식으로 입력하세요.').toLowerCase(),
-    username: z.string().min(2, '2글자 이상 입력하세요.'),
+    username: z
+      .string()
+      .min(2, '2글자 이상 입력하세요.')
+      .transform((value) => value.replaceAll(' ', '')),
     password: z.string().min(5, '5글자 이상 입력하세요.'),
     confirm_password: z.string(),
   })

@@ -2,25 +2,25 @@ import Image from 'next/image';
 import defaultImage from '@/public/profile.jpeg';
 
 export default function UserAvatar({
-  avatar,
-  username,
+  src,
+  alt,
   width,
   height,
   className,
 }: {
-  avatar: string | null;
-  username: string;
+  src: string | null;
+  alt: string;
   width: number;
   height: number;
   className?: string;
 }) {
-  const avatarSrc = avatar ? avatar : defaultImage;
+  const avatarSrc = src ? src : defaultImage;
 
   return (
     <>
       <Image
         src={avatarSrc}
-        alt={username}
+        alt={alt}
         width={width}
         height={height}
         className={`border border-zinc-300 rounded-full overflow-hidden ${className}`}

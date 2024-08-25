@@ -5,12 +5,12 @@ import {
   RiBookmarkLine,
   RiHeart3Fill,
   RiHeart3Line,
-  RiHomeFill,
-  RiHomeLine,
+  RiHome2Fill,
+  RiHome2Line,
   RiSearchFill,
   RiSearchLine,
-  RiUserFill,
-  RiUserLine,
+  RiUser5Fill,
+  RiUser5Line,
 } from '@remixicon/react';
 
 export interface IHeaderPath {
@@ -71,8 +71,8 @@ export const baseTabItems: ITabPath[] = [
     label: '트윗',
     href: '/',
     icon: {
-      active: <RiHomeFill size={18} className='text-zinc-600' />,
-      inactive: <RiHomeLine size={18} />,
+      active: <RiHome2Fill size={18} className='text-zinc-600' />,
+      inactive: <RiHome2Line size={18} />,
     },
   },
   {
@@ -103,8 +103,8 @@ export const baseTabItems: ITabPath[] = [
     label: '프로필',
     href: '/users/:id', // 기본값
     icon: {
-      active: <RiUserFill size={18} className='text-zinc-600' />,
-      inactive: <RiUserLine size={18} />,
+      active: <RiUser5Fill size={18} className='text-zinc-600' />,
+      inactive: <RiUser5Line size={18} />,
     },
   },
 ];

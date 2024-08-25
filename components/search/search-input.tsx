@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 import Input from '../common/input';
 import { RiSearchLine } from '@remixicon/react';
+import Button from '../button/button';
 
 interface SearchInputProps {
   // 부모 컴포넌트로 검색 값을 전달할 콜백 함수
@@ -24,16 +25,17 @@ function SearchInputForm({ onSearch }: SearchInputProps) {
 
   return (
     <>
-      <form action={dispatch} className='flex'>
+      <form action={dispatch} className='flex w-full'>
         <Input
           type='text'
           name='search'
           placeholder='트윗을 검색해보세요.'
           value={searchValue}
           onChange={(e) => setSearchValue(e.currentTarget.value)}
-          icon={<RiSearchLine size={20} />}
+          className='w-full'
+          icon={<RiSearchLine size={16} className='absolute left-3' />}
         />
-        <button className=''>검색</button>
+        <Button className='w-20'>검색</Button>
       </form>
 
       {state?.fieldErrors.search && (

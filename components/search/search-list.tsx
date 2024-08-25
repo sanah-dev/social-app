@@ -43,7 +43,7 @@ export default function TweetSearchList({
         ))}
       </ul>
       {tweets.length === 0 && (
-        <p className='text-rose-600 text-center font-semibold text-sm'>
+        <p className='text-zinc-600 text-sm text-center'>
           검색 결과가 없습니다.
         </p>
       )}
