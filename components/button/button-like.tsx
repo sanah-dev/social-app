@@ -8,14 +8,9 @@ import {
 import { RiHeart3Fill, RiHeart3Line } from '@remixicon/react';
 
 interface LikeButtonProps {
-  isLiked: boolean;
-  likeCount: number;
-  tweetId: number;
-}
-
-interface LikeState {
-  isLiked: boolean;
-  likeCount: number;
+  isLiked: boolean; // 현재 좋아요 상태
+  likeCount: number; // 좋아요 수
+  tweetId: number; // 트윗 ID
 }
 
 export default function ButtonLike({
@@ -25,31 +20,21 @@ export default function ButtonLike({
 }: LikeButtonProps) {
   const [state, setState] = useOptimistic(
     { isLiked, likeCount },
-    (prevState) => ({
-      isLiked: !prevState.isLiked,
-      likeCount: prevState.isLiked
-        ? prevState.likeCount - 1
-        : prevState.likeCount + 1,
+    (previousState, payload) => ({
+      isLiked: !previousState.isLiked,
+      likeCount: previousState.isLiked
+        ? previousState.likeCount - 1
+        : previousState.likeCount + 1,
     })
   );
 
   const onClick = async () => {
-    // Optimistic UI 업데이트
     setState(undefined);
 
-    try {
-      if (state.isLiked) {
-        await unLikeTweet(tweetId);
-      } else {
-        await likeTweet(tweetId);
-      }
-    } catch (error) {
-      setState((prevState: LikeState) => ({
-        ...prevState,
-        isLiked: prevState.isLiked,
-        likeCount: prevState.likeCount,
-      }));
-      console.error('Failed to update like status:', error);
+    if (state.isLiked) {
+      await unLikeTweet(tweetId);
+    } else {
+      await likeTweet(tweetId);
     }
   };
 

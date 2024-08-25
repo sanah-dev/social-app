@@ -1,6 +1,6 @@
 import { formatToDateTime, formatToTimeAgo } from '@/lib/utils';
 import { RiCloseFill } from '@remixicon/react';
-
+import UserAvatar from '../common/avatar';
 export function CommentItem({
   id,
   user,
@@ -10,7 +10,7 @@ export function CommentItem({
   commentDelete,
 }: {
   id: number;
-  user: { username: string; id: number; avatar?: string };
+  user: { username: string; id: number; avatar: string | null };
   created_at: Date;
   payload: string;
   userId: number;
@@ -19,12 +19,12 @@ export function CommentItem({
   return (
     <li key={id} className='relative border-b border-zinc-100'>
       <div className='flex flex-1 gap-2 p-4'>
-        <img
-          src={user.avatar}
-          alt={user.username}
+        <UserAvatar
           width={32}
           height={32}
-          className='size-8 min-w-[32px] border border-zinc-300 rounded-full overflow-hidden'
+          avatar={user.avatar ?? null}
+          username={user.username}
+          className='size-8'
         />
 
         <div className='flex flex-col gap-1'>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Input from './input';
+import Input from './common/input';
 import { RiKey2Line } from '@remixicon/react';
 import { useFormState } from 'react-dom';
 import { verifyPasswordAction } from '@/app/(home)/(tabs)/users/[id]/edit/action';

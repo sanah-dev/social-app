@@ -1,8 +1,8 @@
 'use client';
 
-import { CommentProps } from '@/app/(auth)/action';
 import { commentDelete } from '@/app/(home)/(tabs)/tweets/[id]/actions';
 import { CommentItem } from './comment-Item';
+import { CommentProps } from '@/types';
 
 export default function CommentList({
   id,

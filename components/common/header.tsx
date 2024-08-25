@@ -1,7 +1,7 @@
 'use client';
 
 import { getUser } from '@/app/(auth)/action';
-import ButtonPrev from './button-prev';
+import ButtonPrev from '../button/button-prev';
 import React, { useEffect, useState } from 'react';
 import { getTweetDetails } from '@/app/(home)/(home)/actions';
 import { usePathname } from 'next/navigation';

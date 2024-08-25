@@ -1,7 +1,7 @@
 'use client';
 
-import FormButton from '@/components/button';
-import FormInput from '@/components/input';
+import FormButton from '@/components/button/button';
+import FormInput from '@/components/common/input';
 import { useFormState } from 'react-dom';
 import { logIn } from './actions';
 import { RiKey2Line, RiMailLine } from '@remixicon/react';

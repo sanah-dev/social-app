@@ -1,5 +1,5 @@
-import Header from '@/components/header';
-import TabBar from '@/components/tab-bar';
+import Header from '@/components/common/header';
+import TabBar from '@/components/common/tab-bar';
 
 export default async function TabLayout({
   children,

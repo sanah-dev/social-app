@@ -1,11 +1,28 @@
 import { getUser } from '@/app/(auth)/action';
+import { Prisma } from '@prisma/client';
+import { getInitialMyLikesTweets } from './action';
+import MyLikesTweetList from '@/components/tweets/tweet-list';
+import NotFoundPage from '@/app/not-found';
 
-export default async function Profile() {
+export type InitialTweets = Prisma.PromiseReturnType<
+  typeof getInitialMyLikesTweets
+>;
+
+export const metadata = {
+  title: '',
+};
+
+export default async function MyLikesTweetsPage() {
   const user = await getUser();
+  if (!user) {
+    return NotFoundPage;
+  }
+
+  const initialTweets = await getInitialMyLikesTweets(user.id);
 
   return (
     <>
-      <h1>내가 좋아한 트윗</h1>
+      <MyLikesTweetList initialTweets={initialTweets} />
     </>
   );
 }

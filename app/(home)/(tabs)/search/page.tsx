@@ -1,11 +1,9 @@
-import { getUser } from '@/app/(auth)/action';
+import SearchInput from '@/components/search/search-input';
 
-export default async function SearchPage() {
-  const user = await getUser();
-
+export default function SearchPage() {
   return (
     <>
-      <h1>트윗 검색하기</h1>
+      <SearchInput />
     </>
   );
 }

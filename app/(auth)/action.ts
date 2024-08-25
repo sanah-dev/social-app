@@ -2,74 +2,34 @@
 
 import db from '@/lib/db';
 import getSession from '@/lib/session';
+import { UserProps } from '@/types';
 import { redirect } from 'next/navigation';
-
-export interface UserProps {
-  id: number;
-  username: string;
-  password: string;
-  email: string;
-  avatar?: string;
-  bio: string | null;
-  created_at: Date;
-  updated_at: Date;
-  tweets: {
-    user: {
-      id: number;
-    };
-  };
-}
-
-export interface TweetProps {
-  user: {
-    id: number;
-    username: string;
-    avatar?: string;
-  };
-  id: number;
-  created_at: Date;
-  updated_at: Date;
-  likes: {
-    user: {
-      id: number;
-      username: string;
-      created_at: Date;
-      updated_at: Date;
-    };
-  }[];
-  tweet: string;
-}
-
-export interface CommentProps {
-  user: {
-    id: number;
-    username: string;
-    avatar?: string;
-  };
-  tweet: {
-    userId: number;
-    id: number;
-  };
-  id: number;
-  created_at: Date;
-  updated_at: Date;
-  payload: string;
-}
 
 /* 사용자 */
 export async function getUser() {
   const session = await getSession();
+
   if (session.id) {
     const user = await db.user.findUnique({
       where: {
         id: session.id,
       },
     });
-    if (!user) {
-      return;
-    }
-    return user;
+    return user || null;
   }
+
+  return null;
+}
+// user API
+export async function fetchUser(): Promise<UserProps> {
+  const response = await fetch('/api/user'); // 데이터 요청
+  const data: UserProps | null = await response.json();
+
+  if (!data) {
+    throw new Error('User not found'); // 데이터가 null인 경우 에러 처리
+  }
+
+  return data;
 }
 
 /* 로그아웃 */
@@ -129,7 +89,7 @@ export async function getComments(tweetId: number) {
         select: {
           id: true,
           username: true,
-          email: true,
+          avatar: true,
         },
       },
       tweet: {

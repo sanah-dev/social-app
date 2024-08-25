@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 import { getTweetDetails } from '../../../(home)/actions';
 import { getComments, getUser } from '@/app/(auth)/action';
-import TweetItem from '@/components/tweet-item';
-import CommentList from '@/components/comment-list';
-import CommentAdd from '@/components/comment-add';
+import TweetItem from '@/components/tweets/tweet-item';
+import CommentList from '@/components/comment/comment-list';
+import CommentAdd from '@/components/comment/comment-add';
+import { formatToMaxLength } from '@/lib/utils';
 
 export default async function TweetDetail({
   params,
@@ -32,9 +33,14 @@ export default async function TweetDetail({
     <>
       <div className='detail-inner'>
         <TweetItem
-          {...tweet}
-          likes={tweet._count.likes}
-          comments={tweet._count.comments}
+          id={tweet.id}
+          tweet={formatToMaxLength(tweet.tweet, 170)}
+          user={tweet.user}
+          created_at={tweet.created_at}
+          _count={{
+            likes: tweet._count.likes,
+            comments: tweet._count.comments,
+          }}
         />
         <CommentList id={id} userId={user.id} comments={comments} />
       </div>

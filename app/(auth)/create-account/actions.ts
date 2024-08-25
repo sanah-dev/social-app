@@ -104,7 +104,6 @@ export async function createAccount(prevState: any, formData: FormData) {
 
     const session = await getSession();
     session.id = user.id;
-    session.username = user.username;
     await session.save();
 
     redirect('/');

@@ -13,6 +13,7 @@ export async function getInitialTweets() {
       user: {
         select: {
           username: true,
+          avatar: true,
         },
       },
       _count: {
@@ -102,7 +103,7 @@ export async function getTweetDetails(id: number) {
       user: {
         select: {
           username: true,
-          email: true,
+          avatar: true,
         },
       },
       _count: {

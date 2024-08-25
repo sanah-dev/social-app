@@ -1,7 +1,7 @@
 'use client';
 
-import FormButton from '@/components/button';
-import FormInput from '@/components/input';
+import FormButton from '@/components/button/button';
+import FormInput from '@/components/common/input';
 import { useFormState } from 'react-dom';
 import { createAccount } from './actions';
 import {
@@ -10,7 +10,7 @@ import {
   RiMailLine,
   RiUserLine,
 } from '@remixicon/react';
-import SocialLogin from '@/components/button-social';
+import SocialLogin from '@/components/button/button-social';
 
 export default function Home() {
   const [state, dispatch] = useFormState(createAccount, null);

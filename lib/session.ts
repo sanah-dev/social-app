@@ -3,12 +3,11 @@ import { cookies } from 'next/headers';
 
 interface SessionContent {
   id?: number;
-  username?: string;
 }
 
 export default function getSession() {
   return getIronSession<SessionContent>(cookies(), {
-    cookieName: 'sanah-cookies',
+    cookieName: 'social-cookies',
     password: process.env.COOKIE_PASSWORD!,
   });
 }

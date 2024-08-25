@@ -114,8 +114,10 @@ export default function TweetList({
                 tweet={formatToMaxLength(tweet.tweet, 170)}
                 user={tweet.user}
                 created_at={tweet.created_at}
-                likes={tweet._count.likes}
-                comments={tweet._count.comments}
+                _count={{
+                  likes: tweet._count.likes,
+                  comments: tweet._count.comments,
+                }}
               />
             </Link>
           </li>

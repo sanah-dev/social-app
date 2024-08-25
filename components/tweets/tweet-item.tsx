@@ -1,34 +1,27 @@
 import { formatToDateTime } from '@/lib/utils';
-import { RiBookmarkLine, RiChat1Line, RiHeart3Line } from '@remixicon/react';
-import ButtonLike from './button-like';
-
-export interface TweetProps {
-  id: number;
-  tweet: string;
-  user: { username: string; avatar?: string };
-  created_at: Date;
-  likes: number;
-  comments: number;
-}
+import { RiChat1Line } from '@remixicon/react';
+import { TweetProps } from '@/types';
+import UserAvatar from '../common/avatar';
+import ButtonLike from '../button/button-like';
 
 export default function TweetItem({
   tweet,
   id,
   user,
   created_at,
-  likes,
-  comments,
+  _count: { likes, comments },
 }: TweetProps) {
   return (
     <section className='flex flex-col'>
       <div className='flex items-center gap-2 p-4'>
-        <img
-          src={user.avatar}
-          alt={user.username}
-          width={28}
-          height={28}
-          className='rounded-full overflow-hidden border border-zinc-300'
+        <UserAvatar
+          width={32}
+          height={32}
+          avatar={user.avatar ?? null}
+          username={user.username}
+          className='size-8'
         />
+
         <div className='flex flex-col'>
           <span className='text-sm'>{user.username}</span>
           <time className='text-xs text-zinc-400'>
