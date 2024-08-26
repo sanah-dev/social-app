@@ -1,39 +1,17 @@
 'use server';
 
 import db from '@/lib/db';
-import { z } from 'zod';
 import bcrypt from 'bcrypt';
 import getSession from '@/lib/session';
 import { redirect } from 'next/navigation';
-
-const checkEmailExists = async (email: string) => {
-  const user = await db.user.findUnique({
-    where: {
-      email,
-    },
-    select: {
-      id: true,
-    },
-  });
-
-  return Boolean(user);
-};
-
-const formSchema = z.object({
-  email: z
-    .string()
-    .email('이메일 형식으로 입력하세요.')
-    .toLowerCase()
-    .refine(checkEmailExists, '이메일을 확인해주세요.'),
-  password: z.string().min(5, '5글자 이상 입력하세요.'),
-});
+import { loginSchema } from '@/lib/schema';
 
 export async function logIn(prevState: any, formData: FormData) {
   const data = {
     email: formData.get('email'),
     password: formData.get('password'),
   };
-  const result = await formSchema.safeParseAsync(data);
+  const result = await loginSchema.safeParseAsync(data);
 
   if (!result.success) {
     return result.error.flatten();

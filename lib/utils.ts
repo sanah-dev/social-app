@@ -22,11 +22,3 @@ export const formatToMaxLength = (text: string, maxLength: number): string => {
   if (text.length <= maxLength) return text;
   return text.slice(0, maxLength) + '... 더보기';
 };
-
-export const checkPassword = ({
-  password,
-  confirmPassword,
-}: {
-  password: string;
-  confirmPassword: string;
-}) => password === confirmPassword;

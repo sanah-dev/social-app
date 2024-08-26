@@ -7,7 +7,6 @@ import { UserInfo } from '@/app/(home)/(tabs)/users/[id]/edit/page';
 import {
   getUploadUrl,
   updateUserProfile,
-  userSchema,
 } from '@/app/(home)/(tabs)/users/[id]/edit/action';
 import {
   RiImageFill,
@@ -19,6 +18,7 @@ import {
 } from '@remixicon/react';
 import Button from '../button/button';
 import Input from '../common/input';
+import { profileEditSchema } from '@/lib/schema';
 
 interface FormEditProfileProps {
   userInfo: UserInfo;
@@ -45,7 +45,7 @@ export default function EditProfile({ userInfo }: FormEditProfileProps) {
     setError,
     formState: { errors },
   } = useForm<UserFormType>({
-    resolver: zodResolver(userSchema),
+    resolver: zodResolver(profileEditSchema),
     defaultValues: {
       username: userInfo?.username,
       email: userInfo?.email ? userInfo?.email : undefined,

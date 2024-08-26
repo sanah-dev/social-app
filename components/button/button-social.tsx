@@ -12,7 +12,7 @@ export default function SocialLogin() {
         </div>
 
         <Link
-          className='flex items-center justify-center gap-3 w-full h-12 border border-zinc-400 rounded-md transition *:text-zinc-900 opacity-75 hover:opacity-100'
+          className='flex items-center justify-center gap-3 w-full h-12 border border-zinc-400 rounded-md transition *:text-zinc-900 opacity-80 hover:opacity-100 hover:bg-zinc-50'
           href='/github/start'
         >
           <RiGithubFill size={20} />

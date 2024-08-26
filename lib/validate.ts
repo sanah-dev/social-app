@@ -1,43 +1,10 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import db from './db';
+import { searchSchema } from './schema';
 import getSession from './session';
-
-export async function hasUserNameTaken(username: string) {
-  const user = await db.user.findUnique({
-    where: {
-      username,
-    },
-    select: {
-      id: true,
-    },
-  });
-  return Boolean(user);
-}
-
-export async function hasUserEmailTaken(email: string) {
-  const user = await db.user.findUnique({
-    where: {
-      email,
-    },
-    select: {
-      id: true,
-    },
-  });
-  return Boolean(user);
-}
-
-export async function isEmailExits(email: string) {
-  const user = await db.user.findUnique({
-    where: {
-      email,
-    },
-    select: {
-      id: true,
-    },
-  });
-  return Boolean(user);
-}
+import { redirect } from 'next/navigation';
 
 export async function validateUserName(username: string) {
   const session = await getSession();
@@ -65,8 +32,27 @@ export async function validateUserEmail(email: string) {
       id: true,
     },
   });
-  console.log(user?.id);
+
   if (session.id === user?.id) return Boolean(user);
 
   return !Boolean(user);
+}
+
+export async function validateSearchKeyword(
+  prevState: any,
+  formData: FormData
+) {
+  const data = {
+    search: formData.get('search'),
+  };
+
+  const result = await searchSchema.safeParseAsync(data);
+
+  if (!result.success) {
+    return result.error.flatten();
+  } else {
+    const searchKeyword = encodeURI(result.data.search);
+    revalidatePath(`/search/result?search=${searchKeyword}`);
+    redirect(`/search/result?search=${searchKeyword}`);
+  }
 }

@@ -2,16 +2,11 @@
 
 import { getTweet, getUser } from '@/app/(auth)/action';
 import db from '@/lib/db';
+import { commentSchema } from '@/lib/schema';
 import getSession from '@/lib/session';
 import { revalidatePath, revalidateTag } from 'next/cache';
-import { z } from 'zod';
 
-/* 댓글 */
-const commentSchema = z.object({
-  // TODO: UI 수정
-  comment_add: z.string().max(100, '100자 이내로 작성해주세요.'),
-});
-
+/* 코멘트 */
 export async function commentAdd(
   id: number,
   prevState: any,
@@ -50,7 +45,6 @@ export async function commentAdd(
     revalidatePath(`/tweets/${id}`);
   } catch (e) {}
 }
-
 export async function commentDelete(id: number) {
   try {
     await db.comment.delete({
@@ -63,20 +57,6 @@ export async function commentDelete(id: number) {
 }
 
 /* 좋아요 */
-// export async function likeTweet(tweetId: number) {
-//   const session = await getSession();
-//   try {
-//     await db.like.create({
-//       data: {
-//         tweetId,
-//         userId: session.id!,
-//       },
-//     });
-//     revalidateTag(`like-status-${tweetId}`);
-//   } catch (e) {
-//     console.error('Error liking tweet:', e);
-//   }
-// }
 export async function likeTweet(tweetId: number) {
   const session = await getSession();
   try {
@@ -86,29 +66,11 @@ export async function likeTweet(tweetId: number) {
         userId: session.id!,
       },
     });
-    revalidateTag(`like-like-${tweetId}`);
+    revalidateTag(`like-status-${tweetId}`);
   } catch (e) {
     console.error('Error liking tweet:', e);
   }
 }
-
-/* 좋아요 해제 */
-// export async function unLikeTweet(tweetId: number) {
-//   try {
-//     const session = await getSession();
-//     await db.like.delete({
-//       where: {
-//         id: {
-//           tweetId,
-//           userId: session.id!,
-//         },
-//       },
-//     });
-//     revalidateTag(`like-status-${tweetId}`);
-//   } catch (e) {
-//     console.error('Error unliking tweet:', e);
-//   }
-// }
 export async function unLikeTweet(tweetId: number) {
   const session = await getSession();
   try {
@@ -120,7 +82,7 @@ export async function unLikeTweet(tweetId: number) {
         },
       },
     });
-    revalidateTag(`like-like-${tweetId}`); // 필요에 따라 태그 조정
+    revalidateTag(`like-status-${tweetId}`);
   } catch (e) {
     console.error('Error unliking tweet:', e);
   }
@@ -139,7 +101,6 @@ export async function saveTweet(tweetId: number) {
     revalidateTag(`save-status-${tweetId}`);
   } catch (e) {}
 }
-
 export async function unSaveTweet(tweetId: number) {
   try {
     const session = await getSession();

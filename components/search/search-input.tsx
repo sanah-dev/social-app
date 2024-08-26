@@ -1,12 +1,12 @@
 'use client';
 
-import { validateSearchKeyword } from '@/app/(home)/(tabs)/search/action';
 import { useRouter, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 import Input from '../common/input';
 import { RiSearchLine } from '@remixicon/react';
 import Button from '../button/button';
+import { validateSearchKeyword } from '@/lib/validate';
 
 interface SearchInputProps {
   // 부모 컴포넌트로 검색 값을 전달할 콜백 함수

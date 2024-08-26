@@ -7,56 +7,7 @@ import getSession from '@/lib/session';
 import bcrypt from 'bcrypt';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { validateUserEmail, validateUserName } from '@/lib/validate';
-
-export const userSchema = z
-  .object({
-    avatar: z.string(),
-    username: z
-      .string({
-        required_error: '닉네임을 입력해주세요.',
-      })
-      .min(2, '2글자 이상 입력하세요.')
-      .toLowerCase()
-      .transform((value) => value.replaceAll(' ', '')),
-    email: z
-      .string()
-      .email('이메일 형식으로 입력하세요.')
-      .toLowerCase()
-      .optional(),
-    password: z
-      .string({
-        required_error: '비밀번호를 입력해주세요.',
-      })
-      .min(5, '5글자 이상 입력하세요.'),
-    new_password: z.string().min(5, '5글자 이상 입력하세요.').optional(),
-    confirm_password: z.string().optional(),
-    bio: z.string().optional(),
-  })
-  .superRefine(async ({ username }, ctx) => {
-    const validatedUsername = await validateUserName(username);
-    if (!validatedUsername) {
-      ctx.addIssue({
-        code: 'custom',
-        message: '이미 사용 중인 이름입니다.',
-        path: ['username'],
-        fatal: true,
-      });
-      return z.NEVER;
-    }
-  })
-  .superRefine(async ({ email }, ctx) => {
-    const validatedEmail = await validateUserEmail(email ? email : '');
-    if (!validatedEmail) {
-      ctx.addIssue({
-        code: 'custom',
-        message: '이미 사용 중인 이메일 입니다.',
-        path: ['email'],
-        fatal: true,
-      });
-      return z.NEVER;
-    }
-  });
+import { profileEditSchema } from '@/lib/schema';
 
 export async function getUploadUrl() {
   const response = await fetch(
@@ -96,7 +47,7 @@ export async function updateUserProfile(formData: FormData) {
     data.avatar = `/images/${data.avatar.name}`;
   }
 
-  const result = await userSchema.safeParseAsync(data);
+  const result = await profileEditSchema.safeParseAsync(data);
 
   if (result.data?.confirm_password && result.data.new_password) {
     const isnew_passwordConfirmed = checknew_password(

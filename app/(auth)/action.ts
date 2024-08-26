@@ -5,10 +5,20 @@ import getSession from '@/lib/session';
 import { UserProps } from '@/types';
 import { redirect } from 'next/navigation';
 
+// User API
+// header, tab-bar
+export async function fetchUser(): Promise<UserProps> {
+  const response = await fetch('/api/user'); // 데이터 요청
+  const data: UserProps | null = await response.json();
+  if (!data) {
+    throw new Error('User not found'); // 데이터가 null인 경우 에러 처리
+  }
+  return data;
+}
+
 /* 사용자 */
 export async function getUser() {
   const session = await getSession();
-
   if (session.id) {
     const user = await db.user.findUnique({
       where: {
@@ -27,31 +37,12 @@ export async function getUser() {
 
   return null;
 }
-// user API
-export async function fetchUser(): Promise<UserProps> {
-  const response = await fetch('/api/user'); // 데이터 요청
-  const data: UserProps | null = await response.json();
-
-  if (!data) {
-    throw new Error('User not found'); // 데이터가 null인 경우 에러 처리
-  }
-
-  return data;
-}
 
 /* 로그아웃 */
-// export async function logOut() {
-//   const session = await getSession();
-//   session.destroy();
-//   return redirect('/auth');
-// }
 export async function logOut() {
-  const session = await getSession(); // 세션 가져오기
-  if (session) {
-    session.destroy(); // 세션 삭제
-  }
-  // 리다이렉트 반환
-  return redirect('/auth'); // 클라이언트 측에서 리다이렉션을 수행하도록 리턴
+  const session = await getSession();
+  session.destroy();
+  return redirect('/login');
 }
 
 /* 사용자별 트윗 가져오기 */
