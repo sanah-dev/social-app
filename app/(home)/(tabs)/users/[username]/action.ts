@@ -1,4 +1,19 @@
 import db from '@/lib/db';
+import getSession from '@/lib/session';
+
+export async function getUserProfile(username: string) {
+  const session = await getSession();
+  if (session.id) {
+    const user = await db.user.findUnique({
+      where: {
+        id: session.id,
+      },
+    });
+    if (user) {
+      return user;
+    }
+  }
+}
 
 export async function getInitialMyTweets(userId: number) {
   const tweets = await db.tweet.findMany({

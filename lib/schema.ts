@@ -5,6 +5,17 @@ import { validateUserEmail, validateUserName } from '@/lib/validate';
 /* form 인증 */
 
 // 회원가입
+const checkEmail = async (email: string) => {
+  const user = await db.user.findUnique({
+    where: {
+      email,
+    },
+    select: {
+      id: true,
+    },
+  });
+  return !Boolean(user);
+};
 const checkPasswords = ({
   password,
   confirm_password,
@@ -78,13 +89,11 @@ const checkEmailExists = async (email: string) => {
   });
   return Boolean(user);
 };
-
 export const loginSchema = z.object({
   email: z
     .string()
-    .email()
     .toLowerCase()
-    .refine(checkEmailExists, '이메일을 확인해주세요.'),
+    .refine(checkEmailExists, 'An account with this email does not exist.'),
   password: z.string().min(5, '5글자 이상 입력하세요.'),
 });
 
@@ -116,7 +125,8 @@ export const profileEditSchema = z
       })
       .min(2, '2글자 이상 입력하세요.')
       .toLowerCase()
-      .transform((value) => value.replaceAll(' ', '')),
+      .transform((value) => value.replaceAll(' ', ''))
+      .optional(),
     email: z
       .string()
       .email('이메일 형식으로 입력하세요.')
@@ -132,7 +142,8 @@ export const profileEditSchema = z
     bio: z.string().optional(),
   })
   .superRefine(async ({ username }, ctx) => {
-    const validatedUsername = await validateUserName(username);
+    // const validatedUsername = await validateUserName(username ? username : '');
+    const validatedUsername = await validateUserName(username!);
     if (!validatedUsername) {
       ctx.addIssue({
         code: 'custom',

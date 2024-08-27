@@ -41,7 +41,7 @@ export default function ButtonLike({
   return (
     <button onClick={onClick} className='flex items-center gap-1'>
       {state.isLiked ? (
-        <RiHeart3Fill className='size-5 text-rose' />
+        <RiHeart3Fill className='size-5 text-red-500' />
       ) : (
         <RiHeart3Line className='size-5 text-stone-400' />
       )}

@@ -20,20 +20,12 @@ export default function Home() {
 
   return (
     <>
-      <div className='title-box'>
-        <div className='flex flex-col items-center justify-center gap-6 w-full pb-4 pt-8'>
-          <Image
-            src={VisualImage}
-            alt=''
-            width={360}
-            height={270}
-            className='w-full object-contain size-36'
-          />
-          <h1 className='text-5xl font-brush'>Create an Account</h1>
+      <section className='my-5'>
+        <div className='flex flex-col items-center mb-5'>
+          <Image src={VisualImage} alt='' className='object-contain size-20' />
+          <h1 className='text-center text-5xl font-brush'>Create an Account</h1>
         </div>
-      </div>
 
-      <section>
         <form action={dispatch} className='flex flex-col'>
           <FormInput
             text='Email Address'
@@ -85,14 +77,14 @@ export default function Home() {
           <FormButton>Sign up</FormButton>
         </form>
         <SocialLogin />
-
-        <div className='flex items-center justify-center gap-2 pb-8'>
-          <span className='text-zinc-500'>Already have an account?</span>
-          <Link href='/login' className='underline transition hover:text-rose'>
-            Log in
-          </Link>
-        </div>
       </section>
+
+      <div className='flex items-center justify-center gap-2 py-5'>
+        <span className='text-zinc-500'>Already have an account?</span>
+        <Link href='/login' className='underline transition hover:text-rose'>
+          Log in
+        </Link>
+      </div>
     </>
   );
 }

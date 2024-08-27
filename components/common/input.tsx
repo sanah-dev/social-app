@@ -33,7 +33,13 @@ const _Input = (
   const hasError = errors && errors.length > 0;
   return (
     <>
-      <h3 className='mt-3 text-xs text-zinc-500'>{text}</h3>
+      <h3
+        className={`mt-3 text-xs ${
+          hasError ? 'text-zinc-500' : 'text-zinc-500'
+        }`}
+      >
+        {text}
+      </h3>
 
       <label className={`relative flex items-center gap-4 my-1 ${className}`}>
         {icon}

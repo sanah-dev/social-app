@@ -14,20 +14,12 @@ export default function LogIn() {
   const [state, dispatch] = useFormState(logIn, null);
   return (
     <>
-      <div className='title-box'>
-        <div className='flex flex-col items-center justify-center gap-6 w-full h-80 pt-10'>
-          <Image
-            src={VisualImage}
-            alt=''
-            width={360}
-            height={270}
-            className='w-full object-contain size-36'
-          />
-          <h1 className='text-5xl font-brush'>Welcome back!</h1>
+      <section className='my-5'>
+        <div className='flex flex-col items-center mb-5'>
+          <Image src={VisualImage} alt='' className='object-contain size-20' />
+          <h1 className='text-center text-5xl font-brush'>Welcome back!</h1>
         </div>
-      </div>
 
-      <section>
         <form action={dispatch} className='flex flex-col'>
           <FormInput
             text='Email Address'
@@ -55,17 +47,17 @@ export default function LogIn() {
         </form>
 
         <SocialLogin />
-
-        <div className='flex items-center justify-center gap-2 py-8 pb-12'>
-          <span className='text-zinc-500'>Don&apos;t have an account?</span>
-          <Link
-            href='/create-account'
-            className='underline transition hover:text-rose'
-          >
-            Sign up
-          </Link>
-        </div>
       </section>
+
+      <div className='flex items-center justify-center gap-2 py-5'>
+        <span className='text-zinc-500'>Don&apos;t have an account?</span>
+        <Link
+          href='/create-account'
+          className='underline transition hover:text-rose'
+        >
+          Sign up
+        </Link>
+      </div>
     </>
   );
 }

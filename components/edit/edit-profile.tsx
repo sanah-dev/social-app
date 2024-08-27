@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { UserInfo } from '@/app/(home)/(tabs)/users/[id]/edit/page';
+import { UserInfo } from '@/app/(home)/(tabs)/users/[username]/edit/page';
 import {
   getUploadUrl,
   updateUserProfile,
-} from '@/app/(home)/(tabs)/users/[id]/edit/action';
+} from '@/app/(home)/(tabs)/users/[username]/edit/action';
 import {
   RiImageFill,
   RiKey2Line,

@@ -29,6 +29,7 @@ export async function getUser() {
         username: true,
         email: true,
         avatar: true,
+        github_id: true,
         bio: true,
       },
     });

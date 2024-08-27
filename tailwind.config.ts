@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         brush: ["'Caveat Brush'", 'sans-serif'],
+        poppins: ["'Poppins'", 'sans-serif'],
       },
       backgroundImage: {
         screen:
@@ -29,6 +30,7 @@ const config: Config = {
       colors: {
         dark: 'var(--color-dark)',
         rose: 'var(--color-rose)',
+        rose_hover: 'var(--color-rose-hover)',
       },
 
       width: {

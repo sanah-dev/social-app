@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,7 +8,8 @@
 @layer base {
   :root {
     --color-dark: #27272a; /* text-zinc-800 */
-    --color-rose: #fc427b;
+    --color-rose: #3148eb;
+    --color-rose-hover: #2839be;
 
     --device-width: 393px;
     --device-height: 852px;
@@ -36,9 +38,10 @@
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0px 1000px #fafafa inset !important;
+    -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
     -webkit-text-fill-color: var(--color-dark);
     transition: background-color 5000s ease-in-out 0s;
+    border: 1px solid #d4d4d8;
   }
 
   input::-webkit-outer-spin-button,
@@ -92,10 +95,6 @@
   .img-logo {
     @apply bg-logo bg-contain bg-no-repeat bg-center drop-shadow-neon;
   }
-
-  /* .content {
-    @apply relative flex flex-col gap-8 h-full;
-  } */
 
   .title-box {
     @apply flex flex-col gap-2;
