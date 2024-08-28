@@ -35,9 +35,7 @@ function SearchInputForm({ onSearch }: SearchInputProps) {
           className='w-full'
           icon={<RiSearchLine size={16} className='absolute left-3' />}
         />
-        <Button className='w-14 mt-1 ml-1 p-2'>
-          <span>검색</span>
-        </Button>
+        <Button className='w-14 mt-1 ml-1 p-2'>검색</Button>
       </form>
       {state?.fieldErrors.keyword && (
         <p className='px-4 text-red-500 text-xs'>

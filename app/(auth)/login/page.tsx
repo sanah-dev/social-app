@@ -43,13 +43,13 @@ export default function LogIn() {
             }
           />
 
-          <FormButton>Log in</FormButton>
+          <FormButton className='mt-3'>Log in</FormButton>
         </form>
 
         <SocialLogin />
       </section>
 
-      <div className='flex items-center justify-center gap-2 py-5'>
+      <div className='flex items-center justify-center gap-2 py-5 '>
         <span className='text-zinc-500'>Don&apos;t have an account?</span>
         <Link
           href='/create-account'

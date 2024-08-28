@@ -13,7 +13,7 @@ export default function Button({ children, className }: ButtonProps) {
   return (
     <button
       disabled={pending}
-      className={`flex items-center justify-center w-full h-12 mt-3 text-white bg-rose rounded-md transition hover:bg-rose_hover disabled:bg-rose_hover disabled:cursor-not-allowed ${className}`}
+      className={`flex items-center justify-center h-12 text-white bg-rose rounded-md transition hover:bg-rose_hover disabled:bg-rose_hover disabled:cursor-not-allowed ${className}`}
     >
       {pending ? <RiLoader2Line className='size-6 animate-spin' /> : children}
     </button>

@@ -19,6 +19,8 @@ import {
 import Button from '../button/button';
 import Input from '../common/input';
 import { profileEditSchema } from '@/lib/schema';
+import UserAvatar from '../common/avatar';
+import { redirect } from 'next/navigation';
 
 interface FormEditProfileProps {
   userInfo: UserInfo;
@@ -104,6 +106,8 @@ export default function EditProfile({ userInfo }: FormEditProfileProps) {
     if (errors) {
       setError('password', { message: errors?.fieldErrors.password?.at(0) });
     }
+
+    redirect(`/`);
   });
 
   const onValid = async () => {
@@ -111,92 +115,116 @@ export default function EditProfile({ userInfo }: FormEditProfileProps) {
   };
 
   return (
-    <form action={onValid} className='flex flex-col gap-2'>
-      <label
-        htmlFor='avatar'
-        className='relative flex flex-col self-center items-center justify-center gap-1 size-28 bg-cover border border-zinc-300 rounded-full overflow-hidden cursor-pointer'
-        style={{
-          backgroundImage: `url(${preview})`,
-        }}
-      >
-        {/* {userInfo?.avatar && (
-          <UserAvatar
-            width={128}
-            height={128}
-            src={`${userInfo.avatar}/avatar`}
-            alt={userInfo.username}
-          />
-        )} */}
+    <form action={onValid} className='flex flex-col p-4'>
+      <div className='flex flex-col items-center'>
+        <label
+          htmlFor='avatar'
+          className='relative flex flex-col self-center items-center justify-center gap-1 size-28 bg-cover border border-zinc-300 rounded-full overflow-hidden cursor-pointer'
+          style={{
+            backgroundImage: `url(${preview})`,
+          }}
+        >
+          {/* {userInfo?.avatar && (
+            <UserAvatar
+              width={128}
+              height={128}
+              src={`${userInfo.avatar}/avatar`}
+              alt={userInfo.username}
+            />
+          )} */}
 
-        {preview === '' && (
-          <div
-            className={`absolute top-0 left-0 flex flex-col items-center justify-center gap-1 w-full h-full rounded-full opacity-50 transition hover:opacity-100`}
-          >
-            <RiImageFill />
-            <span className='text-xs text-center font-semibold'>
-              이미지 {userInfo?.avatar ? '변경' : '추가'}
-            </span>
-          </div>
+          {preview === '' && (
+            <div
+              className={`absolute top-0 left-0 flex flex-col items-center justify-center gap-1 w-full h-full rounded-full opacity-50 transition hover:opacity-100`}
+            >
+              <RiImageFill />
+              <span className='text-xs text-center font-semibold'>
+                이미지 {userInfo?.avatar ? '변경' : '추가'}
+              </span>
+            </div>
+          )}
+        </label>
+
+        <input
+          onChange={onImageChange}
+          type='file'
+          id='avatar'
+          name='avatar'
+          accept='image/*'
+          className='hidden'
+        />
+
+        {errors.avatar?.message && (
+          <p className='text-red-600'>{errors.avatar.message}</p>
         )}
-      </label>
-
-      <input
-        onChange={onImageChange}
-        type='file'
-        id='avatar'
-        name='avatar'
-        accept='image/*'
-        className='hidden'
-      />
-
-      {errors.avatar?.message && (
-        <p className='text-red-600'>{errors.avatar.message}</p>
-      )}
+      </div>
 
       <Input
+        text='username'
         placeholder={userInfo?.username}
         {...register('username')}
         errors={errors.username?.message ? [errors.username.message] : []}
-        icon={<RiUserLine size={16} className='absolute left-3' />}
+        icon={
+          <RiUserLine size={16} className='absolute left-3 text-zinc-400' />
+        }
       />
 
       <Input
+        text='email'
         type='email'
         placeholder={userInfo?.email ? userInfo.email : '이메일을 추가해주세요'}
         {...register('email')}
         errors={errors.email?.message ? [errors.email.message] : []}
-        icon={<RiMailLine size={14} className='absolute left-3' />}
+        icon={
+          <RiMailLine size={14} className='absolute left-3 text-zinc-400' />
+        }
       />
 
       <Input
+        text='bio'
         type='text'
         placeholder={
           userInfo?.bio ? userInfo.bio : '나를 표현하는 한줄을 작성해주세요.'
         }
         {...register('bio')}
         errors={errors.bio?.message ? [errors.bio.message] : []}
-        icon={<RiUserSmileLine size={16} className='absolute left-3' />}
+        icon={
+          <RiUserSmileLine
+            size={16}
+            className='absolute left-3 text-zinc-400'
+          />
+        }
       />
 
       <Input
+        text='password'
         type='password'
         placeholder='기존 비밀번호를 입력해주세요'
         {...register('password')}
         errors={errors.password?.message ? [errors.password.message] : []}
-        icon={<RiLockPasswordLine size={16} className='absolute left-3' />}
+        icon={
+          <RiLockPasswordLine
+            size={16}
+            className='absolute left-3 text-zinc-400'
+          />
+        }
       />
 
       <Input
+        text='new password'
         type='password'
         placeholder='새로운 비밀번호를 입력해주세요'
         {...register('new_password')}
         errors={
           errors.new_password?.message ? [errors.new_password.message] : []
         }
-        icon={<RiKey2Line size={16} className='absolute left-3' />}
+        icon={
+          <RiKey2Line size={16} className='absolute left-3 text-zinc-400' />
+        }
       />
 
-      <Input
+      {/* <Input
+        text='new password confirm'
         type='password'
         placeholder='새로운 비밀번호를 확인해주세요'
         {...register('confirm_password')}
@@ -205,10 +233,12 @@ export default function EditProfile({ userInfo }: FormEditProfileProps) {
             ? [errors.confirm_password.message]
             : []
         }
-        icon={<RiKey2Line size={16} className='absolute left-3' />}
-      />
+        icon={
+          <RiKey2Line size={16} className='absolute left-3 text-zinc-400' />
+        }
+      /> */}
 
-      <Button>저장</Button>
+      <Button className='mt-3'>저장</Button>
     </form>
   );
 }

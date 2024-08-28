@@ -74,7 +74,7 @@ export default function Home() {
             }
           />
 
-          <FormButton>Sign up</FormButton>
+          <FormButton className='mt-3'>Sign up</FormButton>
         </form>
         <SocialLogin />
       </section>
