@@ -49,9 +49,7 @@ export default async function UserPage({
                     <RiGithubFill size={14} />
                   )}
                 </i>
-                <span className='uppercase font-semibold'>
-                  {user?.username}
-                </span>
+                <span className='font-semibold'>{user?.username}</span>
               </div>
 
               <button
