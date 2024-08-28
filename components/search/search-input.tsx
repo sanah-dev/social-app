@@ -25,7 +25,7 @@ function SearchInputForm({ onSearch }: SearchInputProps) {
 
   return (
     <>
-      <form action={dispatch} className='flex w-full'>
+      <form action={dispatch} className='flex w-full p-4 pb-0'>
         <Input
           type='text'
           name='search'
@@ -35,7 +35,9 @@ function SearchInputForm({ onSearch }: SearchInputProps) {
           className='w-full'
           icon={<RiSearchLine size={16} className='absolute left-3' />}
         />
-        <Button className='w-20'>검색</Button>
+        <Button className='w-14 mt-1 ml-1 p-2'>
+          <span>검색</span>
+        </Button>
       </form>
 
       {state?.fieldErrors.search && (

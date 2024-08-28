@@ -20,9 +20,8 @@ export default async function SearchResultPage({
 
   return (
     <>
-      <div className='px-4'>
-        <SearchInput />
-      </div>
+      <SearchInput />
+
       {search ? (
         <div className='flex items-center justify-center gap-1 p-4 border-b-8 border-b-zinc-200'>
           <span className='text-rose'>{search}</span>검색결과
