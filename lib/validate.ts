@@ -43,7 +43,7 @@ export async function validateSearchKeyword(
   formData: FormData
 ) {
   const data = {
-    search: formData.get('search'),
+    keyword: formData.get('keyword'),
   };
 
   const result = await searchSchema.safeParseAsync(data);
@@ -51,8 +51,8 @@ export async function validateSearchKeyword(
   if (!result.success) {
     return result.error.flatten();
   } else {
-    const searchKeyword = encodeURI(result.data.search);
-    revalidatePath(`/search/result?search=${searchKeyword}`);
-    redirect(`/search/result?search=${searchKeyword}`);
+    const searchKeyword = encodeURI(result.data.keyword);
+    revalidatePath(`/search/result?keyword=${searchKeyword}`);
+    redirect(`/search/result?keyword=${searchKeyword}`);
   }
 }

@@ -99,7 +99,7 @@ export const loginSchema = z.object({
 
 // 검색
 export const searchSchema = z.object({
-  search: z.string().min(1, '1글자 이상 입력하세요.'),
+  keyword: z.string().min(1, '1글자 이상 입력하세요.'),
 });
 
 // 트윗 작성

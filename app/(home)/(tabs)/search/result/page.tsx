@@ -1,30 +1,30 @@
 import { notFound } from 'next/navigation';
 import TweetSearchList from '@/components/search/search-list';
-import { getSearchedTweet } from '../action';
 import SearchInput from '@/components/search/search-input';
+import { getSearchedTweet } from '../action';
 
 interface SearchResultPageProps {
-  searchParams: { search: string };
+  searchParams: { keyword: string };
 }
 
 export default async function SearchResultPage({
   searchParams,
 }: SearchResultPageProps) {
-  const search = searchParams.search;
+  const keyword = searchParams.keyword;
 
-  if (!search) {
+  if (!keyword) {
     notFound();
   }
 
-  const tweets = await getSearchedTweet(search);
+  const tweets = await getSearchedTweet(keyword);
 
   return (
     <>
       <SearchInput />
 
-      {search ? (
+      {keyword ? (
         <div className='flex items-center justify-center gap-1 p-4 border-b-8 border-b-zinc-200'>
-          <span className='text-rose'>{search}</span>검색결과
+          <span className='text-rose'>{keyword}</span>검색결과
           <span>
             <span className='text-rose'>{tweets.length}</span>개
           </span>
@@ -33,7 +33,11 @@ export default async function SearchResultPage({
         '검색 결과'
       )}
 
-      <TweetSearchList initialTweets={tweets} />
+      {tweets.length === 0 ? (
+        <p className='p-4 text-zinc-400'>검색결과가 없습니다.</p>
+      ) : (
+        <TweetSearchList initialTweets={tweets} />
+      )}
     </>
   );
 }

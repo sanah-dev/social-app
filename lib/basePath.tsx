@@ -15,6 +15,7 @@ import {
 export const ROUTE_TITLE = {
   HOME: 'Tweet',
   SEARCH: 'Search',
+  SEARCH_RESULT: 'Result',
   LIKES: 'Likes',
   TWEET_ADD: 'New Tweet',
   TWEET_DETAIL: 'View',
@@ -25,6 +26,7 @@ export const ROUTE_TITLE = {
 export const ROUTE_PATHS = {
   HOME: '/',
   SEARCH: '/search',
+  SEARCH_RESULT: '/search/result',
   LIKES: '/likes',
   TWEET_ADD: '/tweets/add',
   TWEET_DETAIL: (tweetId: string) => `/tweets/${tweetId}`,
@@ -35,6 +37,7 @@ export const ROUTE_PATHS = {
 export const getHeaderRoutePaths = (pathname: string) => {
   if (pathname === ROUTE_PATHS.HOME) return ROUTE_TITLE.HOME;
   if (pathname === ROUTE_PATHS.SEARCH) return ROUTE_TITLE.SEARCH;
+  if (pathname === ROUTE_PATHS.SEARCH_RESULT) return ROUTE_TITLE.SEARCH_RESULT;
   if (pathname === ROUTE_PATHS.LIKES) return ROUTE_TITLE.LIKES;
   if (pathname === ROUTE_PATHS.TWEET_ADD) return ROUTE_TITLE.TWEET_ADD;
 

@@ -28,7 +28,7 @@ function SearchInputForm({ onSearch }: SearchInputProps) {
       <form action={dispatch} className='flex w-full p-4 pb-0'>
         <Input
           type='text'
-          name='search'
+          name='keyword'
           placeholder='트윗을 검색해보세요.'
           value={searchValue}
           onChange={(e) => setSearchValue(e.currentTarget.value)}
@@ -39,30 +39,31 @@ function SearchInputForm({ onSearch }: SearchInputProps) {
           <span>검색</span>
         </Button>
       </form>
-
-      {state?.fieldErrors.search && (
-        <p className='text-red-500 text-xs'>* {state?.fieldErrors.search}</p>
+      {state?.fieldErrors.keyword && (
+        <p className='px-4 text-red-500 text-xs'>
+          * {state?.fieldErrors.keyword}
+        </p>
       )}
     </>
   );
 }
 
 export default function SearchInput() {
-  const [search, setSearch] = useState<string>('');
+  const [keyword, setKeyword] = useState<string>('');
   const router = useRouter();
 
   useEffect(() => {
-    if (search.trim() === '') {
+    if (keyword.trim() === '') {
       return;
     }
 
-    // 검색어가 입력 후 페이지이동
-    router.push(`/search/result?search=${encodeURIComponent(search)}`);
-  }, [search, router]);
+    // 검색어 입력 후 페이지이동
+    router.push(`/search?keyword=${encodeURIComponent(keyword)}`);
+  }, [keyword, router]);
 
   return (
     <>
-      <SearchInputForm onSearch={setSearch} />
+      <SearchInputForm onSearch={setKeyword} />
     </>
   );
 }
